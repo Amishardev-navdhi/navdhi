@@ -23,6 +23,7 @@ export default function Footer() {
                   width={28}
                   height={28}
                   className="filter grayscale hover:grayscale-0 transition-all"
+                  unoptimized
                 />
               </a>
               <a href="https://www.linkedin.com/company/dietary-guide/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
