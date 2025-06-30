@@ -36,6 +36,7 @@ export default function Home() {
             data-ai-hint="mountain landscape"
             fill
             className="object-cover object-center absolute inset-0 z-0"
+            unoptimized
           />
           <div className="absolute inset-0 bg-black/50 z-10" />
           <div className="relative z-20 container px-4 md:px-6 text-white">
@@ -74,6 +75,7 @@ export default function Home() {
                   width={400}
                   height={200}
                   className="object-contain"
+                  unoptimized
                 />
               </div>
             </div>
@@ -103,6 +105,7 @@ export default function Home() {
                       data-ai-hint="healthy snacks"
                       fill
                       className="object-cover"
+                      unoptimized
                     />
                   </div>
                   <CardTitle className="pt-4 font-headline">
@@ -125,6 +128,7 @@ export default function Home() {
                       data-ai-hint="app launch"
                       fill
                       className="object-cover"
+                      unoptimized
                     />
                   </div>
                   <CardTitle className="pt-4 font-headline">
@@ -146,6 +150,7 @@ export default function Home() {
                       data-ai-hint="herbal tea"
                       fill
                       className="object-cover"
+                      unoptimized
                     />
                   </div>
                   <CardTitle className="pt-4 font-headline">Herbal Teas</CardTitle>
@@ -248,6 +253,7 @@ export default function Home() {
                   width={600}
                   height={400}
                   className="w-full h-auto object-cover"
+                  unoptimized
                 />
                 <CardHeader>
                   <CardTitle className="font-headline">
