@@ -1,0 +1,18 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[functions]
+  directory = ".netlify/functions"
+
+[dev]
+  command = "npm run dev"
+  port = 8888
+
+[build.environment]
+  NODE_VERSION = "20"
+  NEXT_PUBLIC_ENV = "production"
+
+[template.environment]
+  NEXT_PUBLIC_ENV = "Set your public env variable here"
+  NODE_ENV = "production" 
