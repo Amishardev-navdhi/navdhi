@@ -18,7 +18,7 @@ export default function Footer() {
             <div className="flex space-x-4 items-center">
               <a href="https://dietaryguide.in/" target="_blank" rel="noopener noreferrer" aria-label="Dietary Guide">
                 <Image
-                  src="https://github.com/amishardev/navdhiweb/blob/main/DGlogo-Photoroom-modified.png?raw=true"
+                  src="https://raw.githubusercontent.com/amishardev/navdhiweb/main/DGlogo-Photoroom-modified.png"
                   alt="Dietary Guide Logo"
                   width={28}
                   height={28}
