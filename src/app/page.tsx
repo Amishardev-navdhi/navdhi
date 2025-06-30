@@ -31,7 +31,7 @@ export default function Home() {
           className="relative h-[100vh] w-full flex items-center justify-center text-center"
         >
           <Image
-            src="https://github.com/amishardev/navdhiweb/blob/main/Black%20and%20White%20Minimal%20and%20Typographic%20Mountain%20Landscape%20Desktop%20Wallpaper.png?raw=true"
+            src="https://raw.githubusercontent.com/amishardev/navdhiweb/main/Black%20and%20White%20Minimal%20and%20Typographic%20Mountain%20Landscape%20Desktop%20Wallpaper.png"
             alt="Hero background"
             data-ai-hint="mountain landscape"
             fill
@@ -63,12 +63,12 @@ export default function Home() {
                   Our Story: A Journey of Purity and Passion
                 </h2>
                 <p className="mt-4 text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Navdhi began with a mission to blend nature’s wisdom with cutting-edge wellness. We offer nutrient-rich diet products and healing herbal teas rooted in Ayurveda. Our Dietary Guide app empowers users with personalized nutrition insights, tracking, and holistic guidance. Every product and tool we create reflects our passion for purity, health, and mindful living — naturally and sustainably.
+                  Navdhi began with a mission to blend nature's wisdom with cutting-edge wellness. We offer nutrient-rich diet products and healing herbal teas rooted in Ayurveda. Our Dietary Guide app empowers users with personalized nutrition insights, tracking, and holistic guidance. Every product and tool we create reflects our passion for purity, health, and mindful living — naturally and sustainably.
                 </p>
               </div>
               <div className="w-full h-80 flex items-center justify-center relative rounded-lg overflow-hidden">
                 <Image
-                  src="https://github.com/amishardev/navdhiweb/blob/main/nav%C2%B7dhi.png?raw=true"
+                  src="https://raw.githubusercontent.com/amishardev/navdhiweb/main/nav%C2%B7dhi.png"
                   alt="Navdhi Logo"
                   data-ai-hint="logo"
                   width={400}
@@ -98,7 +98,7 @@ export default function Home() {
                 <CardHeader>
                   <div className="w-full h-56 relative rounded-t-lg overflow-hidden">
                     <Image
-                      src="https://github.com/amishardev/navdhiweb/blob/main/9a52e98e-9fa4-436a-afdc-79247e5e6da3.jpg?raw=true"
+                      src="https://raw.githubusercontent.com/amishardev/navdhiweb/main/9a52e98e-9fa4-436a-afdc-79247e5e6da3.jpg"
                       alt="Healthy Diet Snacks"
                       data-ai-hint="healthy snacks"
                       fill
@@ -120,7 +120,7 @@ export default function Home() {
                 <CardHeader>
                   <div className="w-full h-56 relative rounded-t-lg overflow-hidden">
                     <Image
-                      src="https://github.com/amishardev/navdhiweb/blob/main/Peach%20Website%20Launch%20Instagram%20Post.png?raw=true"
+                      src="https://raw.githubusercontent.com/amishardev/navdhiweb/main/Peach%20Website%20Launch%20Instagram%20Post.png"
                       alt="Dietary Guide App"
                       data-ai-hint="app launch"
                       fill
@@ -141,7 +141,7 @@ export default function Home() {
                 <CardHeader>
                   <div className="w-full h-56 relative rounded-t-lg overflow-hidden">
                     <Image
-                      src="https://github.com/amishardev/navdhiweb/blob/main/9a52e98e-9fa4-436a-afdc-79247e5e6da3.jpg?raw=true"
+                      src="https://raw.githubusercontent.com/amishardev/navdhiweb/main/9a52e98e-9fa4-436a-afdc-79247e5e6da3.jpg"
                       alt="Herbal Teas"
                       data-ai-hint="herbal tea"
                       fill
@@ -170,7 +170,7 @@ export default function Home() {
                 The Innovation Lab
               </h2>
               <p className="max-w-[900px] mx-auto text-muted-foreground md:text-xl/relaxed">
-                Where nature&apos;s wisdom meets cutting-edge science to create
+                Where nature's wisdom meets cutting-edge science to create
                 products that are pure, potent, and proven.
               </p>
             </div>
@@ -242,7 +242,7 @@ export default function Home() {
             <div className="mt-12 flex justify-center">
               <Card className="overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 md:max-w-md lg:max-w-lg">
                 <Image
-                  src="https://github.com/amishardev/navdhiweb/blob/main/Peach%20Website%20Launch%20Instagram%20Post.png?raw=true"
+                  src="https://raw.githubusercontent.com/amishardev/navdhiweb/main/Peach%20Website%20Launch%20Instagram%20Post.png"
                   alt="Navdhi Dietary Guide App"
                   data-ai-hint="wellness app"
                   width={600}
@@ -292,7 +292,7 @@ export default function Home() {
                 </p>
                 <p className="font-semibold">
                   💬 Drop your thoughts, questions, or wellness goals below —
-                  Let’s build the future of health, together.
+                  Let's build the future of health, together.
                 </p>
               </div>
             </div>
