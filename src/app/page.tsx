@@ -63,7 +63,7 @@ export default function Home() {
                   Our Story: A Journey of Purity and Passion
                 </h2>
                 <p className="mt-4 text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Navdhi began with a mission to blend nature's wisdom with cutting-edge wellness. We offer nutrient-rich diet products and healing herbal teas rooted in Ayurveda. Our Dietary Guide app empowers users with personalized nutrition insights, tracking, and holistic guidance. Every product and tool we create reflects our passion for purity, health, and mindful living — naturally and sustainably.
+                  Navdhi began with a mission to blend nature’s wisdom with cutting-edge wellness. We offer nutrient-rich diet products and healing herbal teas rooted in Ayurveda. Our Dietary Guide app empowers users with personalized nutrition insights, tracking, and holistic guidance. Every product and tool we create reflects our passion for purity, health, and mindful living — naturally and sustainably.
                 </p>
               </div>
               <div className="w-full h-80 flex items-center justify-center relative rounded-lg overflow-hidden">
@@ -170,7 +170,7 @@ export default function Home() {
                 The Innovation Lab
               </h2>
               <p className="max-w-[900px] mx-auto text-muted-foreground md:text-xl/relaxed">
-                Where nature's wisdom meets cutting-edge science to create
+                Where nature&apos;s wisdom meets cutting-edge science to create
                 products that are pure, potent, and proven.
               </p>
             </div>
@@ -292,7 +292,7 @@ export default function Home() {
                 </p>
                 <p className="font-semibold">
                   💬 Drop your thoughts, questions, or wellness goals below —
-                  Let's build the future of health, together.
+                  Let’s build the future of health, together.
                 </p>
               </div>
             </div>
