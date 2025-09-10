@@ -21,7 +21,7 @@ const NavdhiLogo = React.forwardRef<HTMLDivElement, NavdhiLogoProps>(({ classNam
         fill
         className={cn("object-contain", forceLight ? "hidden" : "block", "dark:hidden")}
         priority
-        unoptimized
+        
       />
       {/* Light logo (for dark backgrounds) */}
       <Image
@@ -30,7 +30,7 @@ const NavdhiLogo = React.forwardRef<HTMLDivElement, NavdhiLogoProps>(({ classNam
         fill
         className={cn("object-contain", forceLight ? "block" : "hidden", "dark:block")}
         priority
-        unoptimized
+        
       />
     </div>
   );

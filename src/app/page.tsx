@@ -17,7 +17,6 @@ import {
   Apple,
   Smartphone,
   Mail,
-  Phone,
   MapPin,
 } from 'lucide-react';
 import AiDietTool from '@/components/ai-diet-tool';
@@ -36,7 +35,7 @@ export default function Home() {
             data-ai-hint="mountain landscape"
             fill
             className="object-cover object-center absolute inset-0 z-0"
-            unoptimized
+            
           />
           <div className="absolute inset-0 bg-black/50 z-10" />
           <div className="relative z-20 container px-4 md:px-6 text-white">
@@ -75,7 +74,7 @@ export default function Home() {
                   width={400}
                   height={200}
                   className="object-contain"
-                  unoptimized
+                  
                 />
               </div>
             </div>
@@ -83,8 +82,63 @@ export default function Home() {
         </section>
 
         <Separator />
+        
+        <section id="team" className="py-12 md:py-24 lg:py-32 bg-secondary/50">
+          <div className="container px-4 md:px-6">
+            <div className="text-center space-y-4">
+              <p className="text-primary font-semibold">People behind Navdhi</p>
+              <h2 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                The Team
+              </h2>
+            </div>
+            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:gap-12 justify-center">
+              <Card className="max-w-sm mx-auto shadow-lg border-0 overflow-hidden text-center">
+                <CardContent className="p-0">
+                  <div className="bg-[#F0F7F0]">
+                    <Image
+                      src="https://github.com/amishardev/navdhiweb/blob/main/Screenshot%202025-09-11%20004854.png?raw=true"
+                      alt="Nishi Sharma"
+                      data-ai-hint="woman portrait"
+                      width={400}
+                      height={400}
+                      className="object-cover w-full h-auto"
+                      
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold font-headline">Nishi Sharma</h3>
+                    <p className="text-primary font-semibold">Managing Director</p>
+                    <p className="text-muted-foreground text-sm">Dietitian | 22+ Years of Experience</p>
+                  </div>
+                </CardContent>
+              </Card>
+              <Card className="max-w-sm mx-auto shadow-lg border-0 overflow-hidden text-center">
+                <CardContent className="p-0">
+                  <div className="bg-[#F0F7F0]">
+                    <Image
+                      src="https://github.com/amishardev/navdhiweb/blob/main/Screenshot%202025-09-11%20004844.png?raw=true"
+                      alt="Amish Sharma"
+                      data-ai-hint="man portrait"
+                      width={400}
+                      height={400}
+                      className="object-cover w-full h-auto"
+                      
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold font-headline">Amish Sharma</h3>
+                    <p className="text-primary font-semibold">Co-Founder</p>
+                    <p className="text-muted-foreground text-sm">IIM Sambalpur | student</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
 
-        <section id="products" className="py-12 md:py-24 lg:py-32 bg-secondary/50">
+        <Separator />
+
+        <section id="products" className="py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <div className="text-center space-y-4">
               <h2 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -105,7 +159,7 @@ export default function Home() {
                       data-ai-hint="healthy snacks"
                       fill
                       className="object-cover"
-                      unoptimized
+                      
                     />
                   </div>
                   <CardTitle className="pt-4 font-headline">
@@ -128,7 +182,7 @@ export default function Home() {
                       data-ai-hint="app launch"
                       fill
                       className="object-cover"
-                      unoptimized
+                      
                     />
                   </div>
                   <CardTitle className="pt-4 font-headline">
@@ -150,7 +204,7 @@ export default function Home() {
                       data-ai-hint="herbal tea"
                       fill
                       className="object-cover"
-                      unoptimized
+                      
                     />
                   </div>
                   <CardTitle className="pt-4 font-headline">Herbal Teas</CardTitle>
@@ -253,7 +307,7 @@ export default function Home() {
                   width={600}
                   height={400}
                   className="w-full h-auto object-cover"
-                  unoptimized
+                  
                 />
                 <CardHeader>
                   <CardTitle className="font-headline">

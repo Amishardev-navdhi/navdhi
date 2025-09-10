@@ -23,7 +23,7 @@ export default function Footer() {
                   width={28}
                   height={28}
                   className="filter grayscale hover:grayscale-0 transition-all"
-                  unoptimized
+                  
                 />
               </a>
               <a href="https://www.linkedin.com/company/dietary-guide/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
@@ -38,6 +38,7 @@ export default function Footer() {
             <h4 className="font-bold font-headline">Explore</h4>
             <ul className="space-y-1">
               <li><Link href="#about" className="text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
+              <li><Link href="#team" className="text-muted-foreground hover:text-primary transition-colors">Team</Link></li>
               <li><Link href="#products" className="text-muted-foreground hover:text-primary transition-colors">Products</Link></li>
               <li><Link href="#innovation" className="text-muted-foreground hover:text-primary transition-colors">Innovation</Link></li>
               <li><Link href="#latest" className="text-muted-foreground hover:text-primary transition-colors">Latest News</Link></li>
