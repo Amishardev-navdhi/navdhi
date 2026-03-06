@@ -156,22 +156,20 @@ export default function Home() {
                 <CardHeader>
                   <div className="w-full h-56 relative rounded-t-lg overflow-hidden">
                     <Image
-                      src="https://raw.githubusercontent.com/amishardev/navdhiweb/main/9a52e98e-9fa4-436a-afdc-79247e5e6da3.jpg"
-                      alt="Healthy Diet Snacks"
-                      data-ai-hint="healthy snacks"
+                      src="https://github.com/amishardev/navdhiweb/blob/main/Screenshot%202026-03-06%20021756.png?raw=true"
+                      alt="Dietary Guide Store"
+                      data-ai-hint="food store products"
                       fill
                       className="object-cover"
-                      
                     />
                   </div>
                   <CardTitle className="pt-4 font-headline">
-                    Healthy Diet Snacks
+                    Dietary Guide Store
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p>
-                    Deliciously guilt-free snacks packed with nutrients to fuel
-                    your day, the healthy way.
+                    Clean, functional foods for healthier everyday living — protein-rich snacks, wholesome granola, digestive teas, and nutritious treats. Real ingredients, balanced nutrition.
                   </p>
                 </CardContent>
               </Card>
