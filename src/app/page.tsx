@@ -18,6 +18,10 @@ import {
   Smartphone,
   Mail,
   MapPin,
+  BrainCircuit,
+  FlaskConical,
+  Cpu,
+  Lightbulb,
 } from 'lucide-react';
 import AiDietTool from '@/components/ai-diet-tool';
 
@@ -83,52 +87,50 @@ export default function Home() {
 
         <Separator />
         
-        <section id="team" className="py-12 md:py-24 lg:py-32 bg-secondary/50">
+        <section id="team" className="py-10 md:py-14 bg-secondary/50">
           <div className="container px-4 md:px-6">
-            <div className="text-center space-y-4">
-              <p className="text-primary font-semibold">People behind Navdhi</p>
-              <h2 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl md:text-5xl">
+            <div className="text-center space-y-1 mb-8">
+              <p className="text-primary font-semibold text-sm">People behind Navdhi</p>
+              <h2 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl">
                 The Team
               </h2>
             </div>
-            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:gap-12 justify-center">
-              <Card className="max-w-sm mx-auto shadow-lg border-0 overflow-hidden text-center">
+            <div className="flex flex-wrap gap-6 justify-center">
+              <Card className="w-72 shadow-lg border-0 overflow-hidden text-center">
                 <CardContent className="p-0">
-                  <div className="bg-[#F0F7F0]">
+                  <div className="bg-[#F0F7F0] h-52 overflow-hidden">
                     <Image
                       src="https://github.com/amishardev/navdhiweb/blob/main/Screenshot%202025-09-11%20004854.png?raw=true"
                       alt="Nishi Sharma"
                       data-ai-hint="woman portrait"
                       width={400}
                       height={400}
-                      className="object-cover w-full h-auto"
-                      
+                      className="object-cover object-top w-full h-full"
                     />
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold font-headline">Nishi Sharma</h3>
-                    <p className="text-primary font-semibold">Managing Director</p>
-                    <p className="text-muted-foreground text-sm">Dietitian | 22+ Years of Experience</p>
+                  <div className="p-4">
+                    <h3 className="text-lg font-bold font-headline">Nishi Sharma</h3>
+                    <p className="text-primary font-semibold text-sm">Managing Director</p>
+                    <p className="text-muted-foreground text-xs mt-0.5">Dietitian | 22+ Years of Experience</p>
                   </div>
                 </CardContent>
               </Card>
-              <Card className="max-w-sm mx-auto shadow-lg border-0 overflow-hidden text-center">
+              <Card className="w-72 shadow-lg border-0 overflow-hidden text-center">
                 <CardContent className="p-0">
-                  <div className="bg-[#F0F7F0]">
+                  <div className="bg-[#F0F7F0] h-52 overflow-hidden">
                     <Image
                       src="https://github.com/amishardev/navdhiweb/blob/main/Screenshot%202025-09-11%20004844.png?raw=true"
                       alt="Amish Sharma"
                       data-ai-hint="man portrait"
                       width={400}
                       height={400}
-                      className="object-cover w-full h-auto"
-                      
+                      className="object-cover object-top w-full h-full"
                     />
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold font-headline">Amish Sharma</h3>
-                    <p className="text-primary font-semibold">Co-Founder</p>
-                    <p className="text-muted-foreground text-sm">IIM Sambalpur | student</p>
+                  <div className="p-4">
+                    <h3 className="text-lg font-bold font-headline">Amish Sharma</h3>
+                    <p className="text-primary font-semibold text-sm">Co-Founder</p>
+                    <p className="text-muted-foreground text-xs mt-0.5">Innovator | Builder</p>
                   </div>
                 </CardContent>
               </Card>
@@ -222,61 +224,89 @@ export default function Home() {
 
         <Separator />
 
-        <section id="innovation" className="py-12 md:py-24 lg:py-32">
+        <section id="innovation" className="py-12 md:py-20">
           <div className="container px-4 md:px-6">
-            <div className="text-center space-y-4">
+            <div className="text-center space-y-3 mb-12">
               <h2 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 The Innovation Lab
               </h2>
-              <p className="max-w-[900px] mx-auto text-muted-foreground md:text-xl/relaxed">
-                Where nature&apos;s wisdom meets cutting-edge science to create
-                products that are pure, potent, and proven.
+              <p className="max-w-[800px] mx-auto text-muted-foreground md:text-xl/relaxed">
+                Where AI research meets real-world impact — building intelligent systems, wellness tools, and efficient solutions for people.
               </p>
             </div>
-            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="flex flex-col items-center text-center p-4">
-                <div className="bg-primary text-primary-foreground rounded-full p-4 mb-4">
-                  <Bot className="h-8 w-8" />
+
+            <div className="mb-6">
+              <p className="text-center text-xs font-semibold uppercase tracking-widest text-primary mb-6">AI Research &amp; Innovation</p>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="flex flex-col items-center text-center p-5 rounded-2xl bg-primary/5 hover:bg-primary/10 transition-colors">
+                  <div className="bg-primary text-primary-foreground rounded-full p-3 mb-3">
+                    <BrainCircuit className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-base font-bold font-headline">AI for People</h3>
+                  <p className="text-muted-foreground mt-1 text-sm">
+                    We build AI systems that solve real-world problems — accessible, explainable, and designed around human needs.
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold font-headline">
-                  Smart Nutrition Engine
-                </h3>
-                <p className="text-muted-foreground mt-2">
-                  Our AI-driven app decodes your lifestyle and health goals to tailor personalized diet recommendations instantly.
-                </p>
+                <div className="flex flex-col items-center text-center p-5 rounded-2xl bg-primary/5 hover:bg-primary/10 transition-colors">
+                  <div className="bg-primary text-primary-foreground rounded-full p-3 mb-3">
+                    <FlaskConical className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-base font-bold font-headline">Applied AI Research</h3>
+                  <p className="text-muted-foreground mt-1 text-sm">
+                    From nutrition science to behavioral analytics, our research translates data into actionable, evidence-based insights.
+                  </p>
+                </div>
+                <div className="flex flex-col items-center text-center p-5 rounded-2xl bg-primary/5 hover:bg-primary/10 transition-colors">
+                  <div className="bg-primary text-primary-foreground rounded-full p-3 mb-3">
+                    <Cpu className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-base font-bold font-headline">Efficient Solutions</h3>
+                  <p className="text-muted-foreground mt-1 text-sm">
+                    Lean, fast, and purposeful — our tech stack is engineered for performance without unnecessary complexity.
+                  </p>
+                </div>
+                <div className="flex flex-col items-center text-center p-5 rounded-2xl bg-primary/5 hover:bg-primary/10 transition-colors">
+                  <div className="bg-primary text-primary-foreground rounded-full p-3 mb-3">
+                    <Lightbulb className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-base font-bold font-headline">Smart Nutrition Engine</h3>
+                  <p className="text-muted-foreground mt-1 text-sm">
+                    Our AI-driven app decodes your lifestyle and health goals to deliver personalized diet recommendations instantly.
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-col items-center text-center p-4">
-                <div className="bg-primary text-primary-foreground rounded-full p-4 mb-4">
-                  <Leaf className="h-8 w-8" />
+            </div>
+
+            <div className="mt-8">
+              <p className="text-center text-xs font-semibold uppercase tracking-widest text-primary mb-6">Wellness &amp; Products</p>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
+                <div className="flex flex-col items-center text-center p-5 rounded-2xl bg-secondary/60 hover:bg-secondary transition-colors">
+                  <div className="bg-primary text-primary-foreground rounded-full p-3 mb-3">
+                    <Leaf className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-base font-bold font-headline">Functional Herbal Teas</h3>
+                  <p className="text-muted-foreground mt-1 text-sm">
+                    Blended by experts and backed by research, our teas target energy, digestion, stress, and immunity — naturally.
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold font-headline">
-                  Functional Herbal Teas
-                </h3>
-                <p className="text-muted-foreground mt-2">
-                  Blended by experts and backed by research, our teas target energy, digestion, stress, and immunity — naturally.
-                </p>
-              </div>
-              <div className="flex flex-col items-center text-center p-4">
-                <div className="bg-primary text-primary-foreground rounded-full p-4 mb-4">
-                  <Apple className="h-8 w-8" />
+                <div className="flex flex-col items-center text-center p-5 rounded-2xl bg-secondary/60 hover:bg-secondary transition-colors">
+                  <div className="bg-primary text-primary-foreground rounded-full p-3 mb-3">
+                    <Apple className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-base font-bold font-headline">Healthy Snacking, Reimagined</h3>
+                  <p className="text-muted-foreground mt-1 text-sm">
+                    Our diet snacks are curated for taste and transformation — guilt-free, nutrient-packed, and goal-oriented.
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold font-headline">
-                  Healthy Snacking, Reimagined
-                </h3>
-                <p className="text-muted-foreground mt-2">
-                  Our diet snacks are curated for taste and transformation — guilt-free, nutrient-packed, and goal-oriented.
-                </p>
-              </div>
-              <div className="flex flex-col items-center text-center p-4">
-                <div className="bg-primary text-primary-foreground rounded-full p-4 mb-4">
-                  <Smartphone className="h-8 w-8" />
+                <div className="flex flex-col items-center text-center p-5 rounded-2xl bg-secondary/60 hover:bg-secondary transition-colors">
+                  <div className="bg-primary text-primary-foreground rounded-full p-3 mb-3">
+                    <Smartphone className="h-6 w-6" />
+                  </div>
+                  <h3 className="text-base font-bold font-headline">Personalized Wellness Tech</h3>
+                  <p className="text-muted-foreground mt-1 text-sm">
+                    From predictive meal planning to real-time nutrition tips, our ecosystem evolves with your health journey.
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold font-headline">
-                  Personalized Wellness Tech
-                </h3>
-                <p className="text-muted-foreground mt-2">
-                  From predictive meal planning to real-time nutrition tips, our ecosystem evolves with your health journey.
-                </p>
               </div>
             </div>
           </div>
@@ -286,42 +316,95 @@ export default function Home() {
 
         <section
           id="latest"
-          className="py-12 md:py-24 lg:py-32 bg-secondary/50"
+          className="py-10 md:py-14 bg-secondary/50"
         >
           <div className="container px-4 md:px-6">
-            <div className="text-center space-y-4">
+            <div className="text-center space-y-2 mb-10">
               <h2 className="text-3xl font-headline font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 Latest by Navdhi
               </h2>
-              <p className="max-w-[900px] mx-auto text-muted-foreground md:text-xl/relaxed">
+              <p className="max-w-[700px] mx-auto text-muted-foreground md:text-lg/relaxed">
                 Stay updated with our latest innovations and wellness news,
                 straight from the Navdhi lab.
               </p>
             </div>
-            <div className="mt-12 flex justify-center">
-              <Card className="overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 md:max-w-md lg:max-w-lg">
+            <div className="flex flex-wrap gap-6 justify-center">
+              <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 w-80">
                 <Image
                   src="https://raw.githubusercontent.com/amishardev/navdhiweb/main/Peach%20Website%20Launch%20Instagram%20Post.png"
                   alt="Navdhi Dietary Guide App"
                   data-ai-hint="wellness app"
                   width={600}
                   height={400}
-                  className="w-full h-auto object-cover"
-                  
+                  className="w-full h-44 object-cover"
                 />
-                <CardHeader>
-                  <CardTitle className="font-headline">
-                    Launching Soon: The Navdhi Dietary Guide App
+                <CardHeader className="pb-2">
+                  <CardTitle className="font-headline text-base">
+                    The Dietary Guide App
                   </CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <CardDescription>
+                <CardContent className="pt-0">
+                  <CardDescription className="text-sm">
                     Your personalized path to wellness is just a tap away.
                     Discover tailored nutrition insights, track your goals, and
                     embrace a healthier lifestyle with our new app.
                   </CardDescription>
-                  <Button variant="link" className="px-0 pt-4">
-                    Learn More
+                  <Button variant="link" className="px-0 pt-3 text-sm" asChild>
+                    <a href="https://dietaryguide.in/app" target="_blank" rel="noopener noreferrer">
+                      Learn More
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 w-80">
+                <Image
+                  src="https://github.com/amishardev/navdhiweb/blob/main/Screenshot%202026-03-06%20131823.png?raw=true"
+                  alt="AI Dataset Creator"
+                  data-ai-hint="AI tool dashboard"
+                  width={600}
+                  height={400}
+                  className="w-full h-44 object-cover"
+                />
+                <CardHeader className="pb-2">
+                  <CardTitle className="font-headline text-base">
+                    AI Dataset Creator Local-First Vision Labeling Tool
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <CardDescription className="text-sm">
+                    Build ML vision datasets entirely in your browser. Define custom label schemas, annotate images with a crop editor, and export JSONL your images never leave your machine.
+                  </CardDescription>
+                  <Button variant="link" className="px-0 pt-3 text-sm" asChild>
+                    <a href="https://amishsharma.com/ai-dataset-creator/landing" target="_blank" rel="noopener noreferrer">
+                      Learn More
+                    </a>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card className="overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 w-80">
+                <Image
+                  src="https://github.com/amishardev/navdhiweb/blob/main/Screenshot%202026-03-06%20021756.png?raw=true"
+                  alt="Dietary Guide Store"
+                  data-ai-hint="food store products"
+                  width={600}
+                  height={400}
+                  className="w-full h-44 object-cover"
+                />
+                <CardHeader className="pb-2">
+                  <CardTitle className="font-headline text-base">
+                    Dietary Guide Store
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <CardDescription className="text-sm">
+                    A destination for clean, functional foods — protein-rich snacks, wholesome granola, digestive teas, and nutritious treats. Real ingredients, balanced nutrition, everyday wellness.
+                  </CardDescription>
+                  <Button variant="link" className="px-0 pt-3 text-sm" asChild>
+                    <a href="https://dietaryguide.in/products" target="_blank" rel="noopener noreferrer">
+                      Learn More
+                    </a>
                   </Button>
                 </CardContent>
               </Card>
