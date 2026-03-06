@@ -199,21 +199,22 @@ export default function Home() {
                 <CardHeader>
                   <div className="w-full h-56 relative rounded-t-lg overflow-hidden">
                     <Image
-                      src="https://raw.githubusercontent.com/amishardev/navdhiweb/main/9a52e98e-9fa4-436a-afdc-79247e5e6da3.jpg"
-                      alt="Herbal Teas"
-                      data-ai-hint="herbal tea"
+                      src="https://github.com/amishardev/navdhiweb/blob/main/Screenshot%202026-03-06%20131823.png?raw=true"
+                      alt="AI Dataset Creator"
+                      data-ai-hint="AI tool dashboard"
                       fill
                       className="object-cover"
-                      
                     />
                   </div>
-                  <CardTitle className="pt-4 font-headline">Herbal Teas</CardTitle>
+                  <CardTitle className="pt-4 font-headline">AI Dataset Creator</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p>
-                    Soothe your senses and boost your immunity with our curated
-                    blends of aromatic herbal teas.
+                    A local-first web tool for ML engineers to build vision datasets without uploading images to the cloud. Label, crop, annotate, and export JSONL — entirely in your browser.
                   </p>
+                  <a href="https://amishsharma.com/ai-dataset-creator/landing" target="_blank" rel="noopener noreferrer" className="text-primary text-sm font-medium pt-3 inline-block hover:underline">
+                    Learn More →
+                  </a>
                 </CardContent>
               </Card>
             </div>
