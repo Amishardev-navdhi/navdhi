@@ -129,7 +129,7 @@ export default function Home() {
                   </div>
                   <div className="p-4">
                     <h3 className="text-lg font-bold font-headline">Amish Sharma</h3>
-                    <p className="text-primary font-semibold text-sm">Managing Director & Co-Founder</p>
+                    <p className="text-primary font-semibold text-sm">Managing Director | Co-Founder</p>
                     <p className="text-muted-foreground text-xs mt-0.5">Innovator | Builder</p>
                   </div>
                 </CardContent>
