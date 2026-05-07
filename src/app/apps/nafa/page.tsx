@@ -9,7 +9,7 @@ export default function NAFAPage() {
     if (initialized.current) return;
     initialized.current = true;
 
-    const API_BASE = 'https://norfolk-answers-assign-loose.trycloudflare.com';
+    const API_BASE = 'https://radical-mounting-logging-fruit.trycloudflare.com';
 
     // ---- Rate Limiting (5 requests per 60 seconds) ----
     const RATE_LIMIT_MAX = 5;
