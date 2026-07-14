@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="NAVDHI INNOVATIONS PVT LTD — A research firm driving innovation through AI, nutrition science, and breakthrough technology." />
+  <title>NAVDHI INNOVATIONS PVT LTD — The Essence of Innovation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* =====================================================================
+       DESIGN TOKENS — LIGHT MODE (default)
+       ===================================================================== */
+    :root {
+      --bg: #f5f5f2;
+      --surface: #ffffff;
+      --border: #ddddd8;
+      --border-light: #e8e8e4;
+
+      --text-primary: #111110;
+      --text-secondary: #55554f;
+      --text-muted: #99998f;
+
+      --black: #111110;
+      --white: #ffffff;
+      --accent: #111110;
+
+      --card-hover-shadow: 0 24px 64px rgba(17, 17, 16, 0.10);
+      --hero-img-filter: contrast(1.08) brightness(0.92) saturate(0.85);
+      --halftone-color: rgba(245, 245, 242, 0.24);
+      --hero-gradient: rgba(245, 245, 242, 0.7);
+      --nav-scrolled-bg: rgba(245, 245, 242, 0.97);
+      --inno-icon-bg: var(--black);
+      --inno-icon-fg: var(--white);
+
+      --font-head: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-pill: 999px;
+
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* =====================================================================
+       DARK MODE TOKENS
+       ===================================================================== */
+    html.dark {
+      --bg: #0a0a0a;
+      --surface: #161616;
+      --border: #262626;
+      --border-light: #222222;
+
+      --text-primary: #f0f0ea;
+      --text-secondary: #a0a098;
+      --text-muted: #686862;
+
+      --black: #f0f0ea;
+      --white: #0a0a0a;
+      --accent: #f0f0ea;
+
+      --card-hover-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+      --hero-img-filter: contrast(1.05) brightness(0.55) saturate(0.6) hue-rotate(30deg);
+      --halftone-color: rgba(180, 140, 220, 0.18);
+      --hero-gradient: rgba(10, 10, 10, 0.65);
+      --nav-scrolled-bg: rgba(10, 10, 10, 0.96);
+      --inno-icon-bg: rgba(255, 255, 255, 0.12);
+      --inno-icon-fg: #f0f0ea;
+    }
+
+    /* =====================================================================
+       RESET
+       ===================================================================== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      transition: background 0.3s;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      transition: background 0.35s, color 0.35s;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: var(--font-body);
+    }
+
+    /* =====================================================================
+       NAVIGATION
+       ===================================================================== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 44px;
+      transition: background 0.3s var(--ease), backdrop-filter 0.3s, border-bottom 0.3s;
+    }
+
+    .nav.scrolled {
+      background: var(--nav-scrolled-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .nav-brand img {
+      height: 48px;
+      width: auto;
+      display: block;
+    }
+    .nav-brand .logo-light { display: block; }
+    .nav-brand .logo-dark  { display: none; }
+    html.dark .nav-brand .logo-light { display: none; }
+    html.dark .nav-brand .logo-dark  { display: block; }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.15s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* ── Dark mode toggle ── */
+    .theme-toggle {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.06);
+      border-color: var(--text-muted);
+    }
+
+    .theme-toggle svg {
+      width: 17px;
+      height: 17px;
+      stroke: var(--text-primary);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.2s;
+    }
+
+    /* Show/hide icons */
+    .theme-toggle .icon-sun {
+      display: none;
+    }
+
+    .theme-toggle .icon-moon {
+      display: block;
+    }
+
+    html.dark .theme-toggle .icon-sun {
+      display: block;
+    }
+
+    html.dark .theme-toggle .icon-moon {
+      display: none;
+    }
+
+    .nav-cta {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 9px 22px;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      background: var(--text-primary);
+      color: var(--bg);
+      border-color: var(--text-primary);
+    }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    /* Mobile overlay menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: var(--bg);
+      flex-direction: column;
+      padding: 24px 28px;
+      animation: fadeSlideDown 0.25s var(--ease) both;
+    }
+
+    @keyframes fadeSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+
+    .mobile-menu-close {
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--text-secondary);
+      line-height: 1;
+    }
+
+    .mobile-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mobile-nav-list a {
+      font-family: var(--font-head);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .mobile-cta-wrap {
+      margin-top: auto;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* =====================================================================
+       HERO — PULSE.IO style: padded image with rounded corners
+       ===================================================================== */
+    .hero-wrap {
+      padding-top: 64px;
+      position: relative;
+    }
+
+    .hero-img-outer {
+      position: relative;
+      width: 100%;
+      padding: 8px 44px 0;
+      line-height: 0;
+    }
+
+    .hero-img-inner {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #1a1a18;
+    }
+
+    .hero-img-inner img {
+      width: 100%;
+      height: 70vh;
+      min-height: 420px;
+      max-height: 640px;
+      object-fit: cover;
+      object-position: center 35%;
+      display: block;
+      filter: var(--hero-img-filter);
+      transition: transform 6s ease-out, filter 0.4s;
+    }
+
+    .hero-img-inner:hover img {
+      transform: scale(1.015);
+    }
+
+    /* Halftone dot matrix overlay */
+    .hero-img-inner::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, var(--halftone-color) 1px, transparent 1px);
+      background-size: 4px 4px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Bottom gradient blending into page */
+    .hero-img-inner::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 140px;
+      background: linear-gradient(to bottom, transparent, var(--hero-gradient));
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    /* Below-image content */
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 48px;
+      max-width: 100%;
+      margin: 0;
+      padding: 48px 44px 72px;
+      align-items: start;
+    }
+
+    .hero-headline {
+      font-family: var(--font-head);
+      font-size: clamp(36px, 4.5vw, 58px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      color: var(--text-primary);
+    }
+
+    .hero-sub {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-top: 16px;
+      max-width: 380px;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      padding-top: 6px;
+    }
+
+    .hero-pill-row {
+      display: flex;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      padding: 6px 6px 6px 24px;
+      gap: 8px;
+    }
+
+    .hero-pill-row span {
+      flex: 1;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .hero-pill-btn {
+      background: var(--text-primary);
+      color: var(--bg);
+      border: none;
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 10px 22px;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: opacity 0.15s, transform 0.15s var(--ease);
+      white-space: nowrap;
+    }
+
+    .hero-pill-btn:hover {
+      opacity: 0.82;
+      transform: translateY(-1px);
+    }
+
+    .hero-trust-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .hero-trust-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .hero-tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--surface);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      letter-spacing: 0.03em;
+      border: 1px solid var(--border);
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .hero-tag:hover {
+      background: var(--text-primary);
+      color: var(--bg);
+      border-color: var(--text-primary);
+    }
+
+    /* =====================================================================
+       SHARED SECTION LAYOUT
+       ===================================================================== */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 44px;
+      transition: background 0.3s;
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 88px 48px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(28px, 3.5vw, 46px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text-primary);
+    }
+
+    .section-desc {
+      font-size: 15px;
+      line-height: 1.72;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-top: 16px;
+    }
+
+    /* =====================================================================
+       ABOUT SECTION
+       ===================================================================== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      margin-top: 52px;
+      align-items: center;
+    }
+
+    .about-body p+p {
+      margin-top: 16px;
+    }
+
+    .about-highlight {
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 15px;
+      line-height: 1.6;
+      border-left: 3px solid var(--text-primary);
+      padding-left: 16px;
+      margin-top: 24px !important;
+    }
+
+    .about-logo-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 0;
+      display: flex;
+      align-items: stretch;
+      justify-content: stretch;
+      min-height: 300px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-logo-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, var(--halftone-color) 1px, transparent 1px);
+      background-size: 8px 8px;
+      z-index: 1;
+    }
+
+    .about-logo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: relative;
+      z-index: 0;
+    }
+
+    html.dark .about-logo-card img { filter: none; }
+
+    /* =====================================================================
+       TEAM SECTION
+       ===================================================================== */
+    .team-bg {
+      background: var(--surface);
+      transition: background 0.35s;
+    }
+
+    .team-grid {
+      display: flex;
+      gap: 28px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 52px;
+    }
+
+    .team-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform 0.25s var(--ease-bounce), box-shadow 0.25s var(--ease), background 0.35s;
+    }
+
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--card-hover-shadow);
+    }
+
+    .team-card-photo {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .team-card-body {
+      padding: 24px 22px 28px;
+    }
+
+    .team-card-name {
+      font-family: var(--font-head);
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .team-card-role {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 5px;
+    }
+
+    .team-card-bio {
+      font-size: 13px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin-top: 10px;
+    }
+
+    .team-badge {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 5px 16px;
+      border-radius: var(--radius-pill);
+      background: var(--text-primary);
+      color: var(--bg);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* =====================================================================
+       PRODUCTS SECTION
+       ===================================================================== */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 52px;
+    }
+
+    .product-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s var(--ease-bounce), box-shadow 0.25s var(--ease), background 0.35s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--card-hover-shadow);
+    }
+
+    .product-card-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.4s var(--ease);
+    }
+
+    .product-card:hover .product-card-img {
+      transform: scale(1.03);
+    }
+
+    .product-card-body {
+      padding: 24px 22px 28px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card-title {
+      font-family: var(--font-head);
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+
+    .product-card-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-top: 10px;
+      flex: 1;
+    }
+
+    .product-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 18px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.01em;
+      transition: gap 0.18s;
+    }
+
+    .product-card-link:hover {
+      gap: 9px;
+    }
+
+    .product-card-link::after {
+      content: '→';
+    }
+
+    /* =====================================================================
+       INNOVATION SECTION
+       ===================================================================== */
+    .innovation-bg {
+      background: var(--surface);
+      transition: background 0.35s;
+    }
+
+    .subsection-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 48px 0 22px;
+    }
+
+    .innovation-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .wellness-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .inno-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 26px 22px 28px;
+      transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.35s;
+    }
+
+    .inno-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--card-hover-shadow);
+    }
+
+    .inno-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--inno-icon-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      flex-shrink: 0;
+      transition: background 0.3s;
+    }
+
+    .inno-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--inno-icon-fg);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.3s;
+    }
+
+    .inno-title {
+      font-family: var(--font-head);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .inno-desc {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* =====================================================================
+       LATEST NEWS SECTION
+       ===================================================================== */
+    .latest-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 52px;
+    }
+
+    .latest-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s var(--ease-bounce), box-shadow 0.25s var(--ease), background 0.35s;
+    }
+
+    .latest-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--card-hover-shadow);
+    }
+
+    .latest-card-img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+    }
+
+    .latest-card-body {
+      padding: 22px 22px 26px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .latest-card-title {
+      font-family: var(--font-head);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.35;
+    }
+
+    .latest-card-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-top: 10px;
+      flex: 1;
+    }
+
+    .latest-card-link {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      transition: letter-spacing 0.15s, color 0.15s;
+    }
+
+    .latest-card-link:hover {
+      letter-spacing: 0.02em;
+    }
+
+    /* =====================================================================
+       CONNECT CTA BAND
+       ===================================================================== */
+    .connect-band {
+      background: var(--text-primary);
+      color: var(--bg);
+      padding: 88px 48px;
+      text-align: center;
+      transition: background 0.35s, color 0.35s;
+    }
+
+    .connect-title {
+      font-family: var(--font-head);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .connect-desc {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 20px auto 0;
+    }
+
+    html:not(.dark) .connect-desc {
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    html.dark .connect-desc {
+      color: rgba(10, 10, 10, 0.55);
+    }
+
+    .connect-form {
+      display: flex;
+      gap: 8px;
+      max-width: 420px;
+      margin: 36px auto 0;
+    }
+
+    .connect-input {
+      flex: 1;
+      padding: 13px 18px;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid rgba(128, 128, 128, 0.3);
+      background: rgba(128, 128, 128, 0.12);
+      color: var(--bg);
+      font-family: var(--font-body);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .connect-input::placeholder {
+      color: rgba(128, 128, 128, 0.6);
+    }
+
+    .connect-input:focus {
+      border-color: rgba(128, 128, 128, 0.6);
+    }
+
+    .connect-btn {
+      background: var(--bg);
+      color: var(--text-primary);
+      border: none;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 13px 26px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .connect-btn:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    /* =====================================================================
+       CONTACT SECTION
+       ===================================================================== */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      margin-top: 52px;
+      align-items: start;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .contact-info-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .contact-info-item:first-child {
+      padding-top: 0;
+    }
+
+    .ci-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.3s;
+    }
+
+    .ci-icon svg {
+      width: 16px;
+      height: 16px;
+      stroke: var(--text-primary);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .ci-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+
+    .ci-value {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .map-wrap {
+      margin-top: 24px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      height: 220px;
+    }
+
+    html.dark .map-wrap {
+      filter: invert(0.9) hue-rotate(180deg) brightness(0.95) contrast(0.9);
+    }
+
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: none;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .form-field {
+      padding: 13px 16px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s, background 0.3s;
+      resize: none;
+    }
+
+    .form-field::placeholder {
+      color: var(--text-muted);
+    }
+
+    .form-field:focus {
+      border-color: var(--text-primary);
+      box-shadow: 0 0 0 3px rgba(128, 128, 128, 0.1);
+    }
+
+    .form-submit {
+      background: var(--text-primary);
+      color: var(--bg);
+      border: none;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-body);
+      font-size: 14px;
+      font-weight: 700;
+      padding: 14px 32px;
+      cursor: pointer;
+      align-self: flex-start;
+      letter-spacing: 0.01em;
+      transition: opacity 0.15s, transform 0.15s var(--ease), background 0.3s, color 0.3s;
+    }
+
+    .form-submit:hover {
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+
+    .form-success {
+      display: none;
+      padding: 20px;
+      background: #f0faf4;
+      border: 1px solid #9fd9b4;
+      border-radius: var(--radius-md);
+      color: #1a6b3a;
+      font-size: 14px;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    html.dark .form-success {
+      background: #0a2818;
+      border-color: #1e5934;
+      color: #7dd4a0;
+    }
+
+    /* =====================================================================
+       FOOTER
+       ===================================================================== */
+    .footer {
+      background: var(--text-primary);
+      color: rgba(128, 128, 128, 0.7);
+      transition: background 0.35s;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 48px 40px;
+      display: grid;
+      grid-template-columns: 2.2fr 1fr 1fr 1.2fr;
+      gap: 48px;
+    }
+
+    .footer-brand {
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--bg);
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .footer-soc {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: rgba(128, 128, 128, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+
+    .footer-soc:hover {
+      background: rgba(128, 128, 128, 0.25);
+    }
+
+    .footer-soc svg {
+      width: 15px;
+      height: 15px;
+      stroke: rgba(128, 128, 128, 0.8);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .footer-col-head {
+      font-family: var(--font-head);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--bg);
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover {
+      color: var(--bg);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 48px;
+      border-top: 1px solid rgba(128, 128, 128, 0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: rgba(128, 128, 128, 0.45);
+    }
+
+    /* =====================================================================
+       SCROLL REVEAL ANIMATION
+       ===================================================================== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =====================================================================
+       RESPONSIVE
+       ===================================================================== */
+    @media (max-width: 1024px) {
+      .innovation-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      .nav {
+        padding: 0 24px;
+      }
+
+      .hero-img-outer {
+        padding: 6px 16px 0;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        padding: 32px 24px 48px;
+        gap: 32px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .wellness-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .latest-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+
+      .section {
+        padding: 64px 24px;
+      }
+
+      .section-divider {
+        margin: 0 24px;
+      }
+
+      .connect-band {
+        padding: 60px 24px;
+      }
+
+      .connect-form {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero-img-inner img {
+        height: 300px;
+        min-height: 260px;
+      }
+
+      .hero-img-outer {
+        padding: 4px 12px 0;
+      }
+
+      .hero-pill-row {
+        flex-direction: column;
+        padding: 14px 18px;
+        border-radius: var(--radius-xl);
+        align-items: flex-start;
+      }
+
+      .hero-pill-row span {
+        margin-bottom: 8px;
+      }
+
+      .innovation-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .wellness-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        padding: 48px 24px 32px;
+      }
+
+      .footer-bottom {
+        padding: 20px 24px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================= NAVIGATION ============================= -->
+  <nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-left">
+      <a href="#home" class="nav-brand" id="nav-brand">
+        <img class="logo-light" src="https://raw.githubusercontent.com/amishardev/DGWEBSITEIMG/main/Purple_and_White_Subtle_Gradients_LinkedIn_Banner__2_-removebg-preview.png" alt="NAVDHI INNOVATIONS" />
+        <img class="logo-dark" src="https://raw.githubusercontent.com/amishardev/DGWEBSITEIMG/main/Purple_and_White_Subtle_Gradients_LinkedIn_Banner__1_-removebg-preview.png" alt="NAVDHI INNOVATIONS" />
+      </a>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#innovation">Innovation</a></li>
+        <li><a href="#latest">Latest</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-right">
+      <!-- Dark mode toggle -->
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="5" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+      </button>
+
+      <button class="nav-cta" id="nav-cta-btn" aria-label="Contact us">
+        Contact Us
+      </button>
+
+      <button class="nav-hamburger" id="hamburger-btn" aria-label="Open mobile menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <div class="mobile-menu-top">
+      <span class="nav-brand">
+        <img class="logo-light" src="https://raw.githubusercontent.com/amishardev/DGWEBSITEIMG/main/Purple_and_White_Subtle_Gradients_LinkedIn_Banner__2_-removebg-preview.png" alt="NAVDHI INNOVATIONS" />
+        <img class="logo-dark" src="https://raw.githubusercontent.com/amishardev/DGWEBSITEIMG/main/Purple_and_White_Subtle_Gradients_LinkedIn_Banner__1_-removebg-preview.png" alt="NAVDHI INNOVATIONS" />
+      </span>
+      <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">✕</button>
+    </div>
+    <ul class="mobile-nav-list" role="list">
+      <li><a href="#about" onclick="closeMenu()">About</a></li>
+      <li><a href="#team" onclick="closeMenu()">Team</a></li>
+      <li><a href="#products" onclick="closeMenu()">Products</a></li>
+      <li><a href="#innovation" onclick="closeMenu()">Innovation</a></li>
+      <li><a href="#latest" onclick="closeMenu()">Latest</a></li>
+      <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+    </ul>
+    <div class="mobile-cta-wrap">
+      <button class="hero-pill-btn" style="width:100%; padding:14px;" onclick="closeMenu(); navScrollTo('contact')">
+        Contact Us →
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================= HERO ============================= -->
+  <section id="home" class="hero-wrap">
+
+    <!-- Mountain image with halftone overlay — PULSE.IO style padded with rounded corners -->
+    <div class="hero-img-outer">
+      <div class="hero-img-inner">
+        <img
+          src="https://raw.githubusercontent.com/amishardev/navdhiweb/main/Black%20and%20White%20Minimal%20and%20Typographic%20Mountain%20Landscape%20Desktop%20Wallpaper.png"
+          alt="Mountain landscape — NAVDHI INNOVATIONS PVT LTD" loading="eager" decoding="async" fetchpriority="high" />
+      </div>
+    </div>
+
+    <!-- Content below image -->
+    <div class="hero-content">
+      <div>
+        <h1 class="hero-headline">
+          Pioneering Research,<br>The Essence of Innovation
+        </h1>
+        <p class="hero-sub">
+          Driving innovation through AI and modern science to nurture well-being
+          through AI, applied nutrition science, and breakthrough innovation.
+        </p>
+      </div>
+      <div class="hero-right">
+        <div class="hero-pill-row">
+          <span>Explore our research</span>
+          <button class="hero-pill-btn" onclick="navScrollTo('products')">
+            Discover →
+          </button>
+        </div>
+        <p class="hero-trust-label">Research areas</p>
+        <div class="hero-trust-tags">
+          <span class="hero-tag">AI Research</span>
+          <span class="hero-tag">Nutrition Science</span>
+          <span class="hero-tag">Wellness Tech</span>
+          <span class="hero-tag">Applied ML</span>
+          <span class="hero-tag">Deep Learning</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================= ABOUT ============================= -->
+  <section id="about">
+    <div class="section">
+      <p class="section-label reveal">Our Story</p>
+      <h2 class="section-title reveal">A Journey of Purity<br>and Passion</h2>
+      <div class="about-grid">
+        <div class="about-body reveal">
+          <p class="section-desc">
+            Navdhi began with a mission to blend scientific research with cutting-edge wellness.
+            We offer nutrient-rich diet products and functional foods backed by data-driven insights.
+          </p>
+          <p class="section-desc">
+            Our Dietary Guide app empowers users with personalized nutrition insights,
+            tracking, and holistic guidance. Every product and tool we create reflects our
+            passion for purity, health, and mindful living — naturally and sustainably.
+          </p>
+          <p class="section-desc about-highlight">
+            As a registered research firm, NAVDHI INNOVATIONS PVT LTD bridges
+            nutrition science with modern artificial intelligence.
+          </p>
+        </div>
+        <div class="about-logo-card reveal">
+          <img src="https://raw.githubusercontent.com/amishardev/navdhiweb/main/nav%C2%B7dhi.png" alt="Navdhi Wordmark"
+            loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================= TEAM ============================= -->
+  <section id="team" class="team-bg">
+    <div class="section">
+      <p class="section-label reveal">People Behind Navdhi</p>
+      <h2 class="section-title reveal">The Team</h2>
+
+      <div class="team-grid">
+
+        <article class="team-card reveal">
+          <img class="team-card-photo"
+            src="https://github.com/amishardev/navdhiweb/blob/main/Screenshot%202025-09-11%20004854.png?raw=true"
+            alt="Nishi Sharma — Founder & Managing Director" loading="lazy" />
+          <div class="team-card-body">
+            <div class="team-card-name">Nishi Sharma</div>
+            <div class="team-card-role">Founder · Managing Director</div>
+            <p class="team-card-bio">
+              Dietitian with 22+ years of experience bridging traditional nutrition
+              with modern wellness science.
+            </p>
+            <span class="team-badge">Founder</span>
+          </div>
+        </article>
+
+        <article class="team-card reveal">
+          <img class="team-card-photo"
+            src="https://github.com/amishardev/navdhiweb/blob/main/Screenshot%202025-09-11%20004844.png?raw=true"
+            alt="Amish Sharma — Co-Founder & Managing Director" loading="lazy" />
+          <div class="team-card-body">
+            <div class="team-card-name">Amish Sharma</div>
+            <div class="team-card-role">Co-Founder · Managing Director</div>
+            <p class="team-card-bio">
+              Innovator and builder driving AI research and technology at the core of
+              NAVDHI INNOVATIONS.
+            </p>
+            <span class="team-badge">Co-Founder</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================= PRODUCTS ============================= -->
+  <section id="products">
+    <div class="section">
+      <p class="section-label reveal">Products &amp; Services</p>
+      <h2 class="section-title reveal">Crafted for Your<br>Holistic Health</h2>
+      <p class="section-desc reveal">
+        Carefully crafted, scientifically formulated, and ethically sourced
+        for your holistic well-being.
+      </p>
+
+      <div class="products-grid">
+
+        <article class="product-card reveal">
+          <div style="overflow:hidden;">
+            <img class="product-card-img"
+              src="https://github.com/amishardev/navdhiweb/blob/main/Screenshot%202026-03-06%20021756.png?raw=true"
+              alt="Dietary Guide Store" loading="lazy" />
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-title">Dietary Guide Store</div>
+            <p class="product-card-desc">
+              Clean, functional foods for healthier everyday living — protein-rich snacks,
+              wholesome granola, digestive teas, and nutritious treats.
+            </p>
+            <a href="https://dietaryguide.in/products" target="_blank" rel="noopener noreferrer"
+              class="product-card-link">Learn More</a>
+          </div>
+        </article>
+
+        <article class="product-card reveal">
+          <div style="overflow:hidden;">
+            <img class="product-card-img"
+              src="https://raw.githubusercontent.com/amishardev/navdhiweb/main/Peach%20Website%20Launch%20Instagram%20Post.png"
+              alt="Dietary Guide App" loading="lazy" />
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-title">Dietary Guide App</div>
+            <p class="product-card-desc">
+              Personalized nutrition insights, tracking, and holistic guidance at your
+              fingertips. Your path to wellness, just a tap away.
+            </p>
+            <a href="https://dietaryguide.in/app" target="_blank" rel="noopener noreferrer"
+              class="product-card-link">Learn More</a>
+          </div>
+        </article>
+
+        <article class="product-card reveal">
+          <div style="overflow:hidden;">
+            <img class="product-card-img"
+              src="https://github.com/amishardev/navdhiweb/blob/main/Screenshot%202026-03-06%20131823.png?raw=true"
+              alt="AI Dataset Creator" loading="lazy" />
+          </div>
+          <div class="product-card-body">
+            <div class="product-card-title">AI Dataset Creator</div>
+            <p class="product-card-desc">
+              A local-first tool for ML engineers to build vision datasets without the cloud.
+              Label, crop, annotate, and export JSONL — in your browser.
+            </p>
+            <a href="https://amishsharma.com/ai-dataset-creator/landing" target="_blank" rel="noopener noreferrer"
+              class="product-card-link">Learn More</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================= INNOVATION ============================= -->
+  <section id="innovation" class="innovation-bg">
+    <div class="section">
+      <p class="section-label reveal">Research &amp; Innovation</p>
+      <h2 class="section-title reveal">The Innovation Lab</h2>
+      <p class="section-desc reveal">
+        Where AI research meets real-world impact — building intelligent systems,
+        wellness tools, and efficient solutions for people.
+      </p>
+
+      <p class="subsection-label">AI Research &amp; Innovation</p>
+      <div class="innovation-grid">
+        <div class="inno-card reveal">
+          <div class="inno-icon"><svg viewBox="0 0 24 24">
+              <path
+                d="M12 2a5 5 0 0 1 5 5v1h1a3 3 0 1 1 0 6h-1v1a5 5 0 0 1-10 0v-1H6a3 3 0 1 1 0-6h1V7a5 5 0 0 1 5-5z" />
+            </svg></div>
+          <div class="inno-title">AI for People</div>
+          <p class="inno-desc">We build AI systems that solve real-world problems — accessible, explainable, and
+            designed around human needs.</p>
+        </div>
+        <div class="inno-card reveal">
+          <div class="inno-icon"><svg viewBox="0 0 24 24">
+              <path d="M9 3h6" />
+              <path d="M10 3v7l-4.36 7.63A1 1 0 0 0 6.5 19h11a1 1 0 0 0 .86-1.37L14 10V3" />
+            </svg></div>
+          <div class="inno-title">Applied AI Research</div>
+          <p class="inno-desc">From nutrition science to behavioral analytics, our research translates data into
+            actionable, evidence-based insights.</p>
+        </div>
+        <div class="inno-card reveal">
+          <div class="inno-icon"><svg viewBox="0 0 24 24">
+              <rect x="4" y="4" width="16" height="16" rx="2" />
+              <rect x="9" y="9" width="6" height="6" />
+              <path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M20 9h3M1 15h3M20 15h3" />
+            </svg></div>
+          <div class="inno-title">Efficient Solutions</div>
+          <p class="inno-desc">Lean, fast, and purposeful — our tech stack is engineered for performance without
+            unnecessary complexity.</p>
+        </div>
+        <div class="inno-card reveal">
+          <div class="inno-icon"><svg viewBox="0 0 24 24">
+              <polygon points="12 2 2 7 12 12 22 7 12 2" />
+              <polyline points="2 17 12 22 22 17" />
+              <polyline points="2 12 12 17 22 12" />
+            </svg></div>
+          <div class="inno-title">Smart Nutrition Engine</div>
+          <p class="inno-desc">Our AI-driven app decodes your lifestyle and health goals to deliver personalized diet
+            recommendations instantly.</p>
+        </div>
+      </div>
+
+      <p class="subsection-label">Wellness &amp; Products</p>
+      <div class="wellness-grid">
+        <div class="inno-card reveal">
+          <div class="inno-icon"><svg viewBox="0 0 24 24">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z" />
+              <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+            </svg></div>
+          <div class="inno-title">Functional Wellness Blends</div>
+          <p class="inno-desc">Blended by experts and backed by research, our teas target energy, digestion, stress, and
+            immunity — naturally.</p>
+        </div>
+        <div class="inno-card reveal">
+          <div class="inno-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 20.94c1.5 0 4.3-1 4.3-3.9s-3-4.3-4.3-4.3-4.3 1.4-4.3 4.3 2.8 3.9 4.3 3.9z" />
+              <path
+                d="M12 12.74c0-2.6 2.2-4.24 4.3-4.24a4.6 4.6 0 0 1 2.6.74 7.2 7.2 0 0 0-2.1-4.5 4.7 4.7 0 0 0-2.5-.74c-1.5 0-3.3.9-4.3 2.5-1-1.6-2.8-2.5-4.3-2.5a4.7 4.7 0 0 0-2.5.74 7.2 7.2 0 0 0-2.1 4.5 4.6 4.6 0 0 1 2.6-.74c2.1 0 4.3 1.64 4.3 4.24" />
+            </svg></div>
+          <div class="inno-title">Healthy Snacking, Reimagined</div>
+          <p class="inno-desc">Our diet snacks are curated for taste and transformation — guilt-free, nutrient-packed,
+            and goal-oriented.</p>
+        </div>
+        <div class="inno-card reveal">
+          <div class="inno-icon"><svg viewBox="0 0 24 24">
+              <rect x="5" y="2" width="14" height="20" rx="2" />
+              <line x1="12" y1="18" x2="12.01" y2="18" />
+            </svg></div>
+          <div class="inno-title">Personalized Wellness Tech</div>
+          <p class="inno-desc">From predictive meal planning to real-time nutrition tips, our ecosystem evolves with
+            your health journey.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================= LATEST NEWS ============================= -->
+  <section id="latest">
+    <div class="section">
+      <p class="section-label reveal">What's New</p>
+      <h2 class="section-title reveal">Latest by Navdhi</h2>
+      <p class="section-desc reveal">
+        Stay updated with our latest innovations and wellness news,
+        straight from the Navdhi lab.
+      </p>
+
+      <div class="latest-grid">
+        <article class="latest-card reveal">
+          <img class="latest-card-img"
+            src="https://raw.githubusercontent.com/amishardev/navdhiweb/main/Peach%20Website%20Launch%20Instagram%20Post.png"
+            alt="Dietary Guide App" loading="lazy" />
+          <div class="latest-card-body">
+            <div class="latest-card-title">The Dietary Guide App</div>
+            <p class="latest-card-desc">Your personalized path to wellness is just a tap away. Discover tailored
+              nutrition insights and track your goals.</p>
+            <a href="https://dietaryguide.in/app" target="_blank" rel="noopener noreferrer"
+              class="latest-card-link">Learn More →</a>
+          </div>
+        </article>
+        <article class="latest-card reveal">
+          <img class="latest-card-img"
+            src="https://github.com/amishardev/navdhiweb/blob/main/Screenshot%202026-03-06%20131823.png?raw=true"
+            alt="AI Dataset Creator" loading="lazy" />
+          <div class="latest-card-body">
+            <div class="latest-card-title">AI Dataset Creator — Local-First Vision Labeling</div>
+            <p class="latest-card-desc">Build ML vision datasets entirely in your browser. Annotate with a crop editor
+              and export JSONL privately.</p>
+            <a href="https://amishsharma.com/ai-dataset-creator/landing" target="_blank" rel="noopener noreferrer"
+              class="latest-card-link">Learn More →</a>
+          </div>
+        </article>
+        <article class="latest-card reveal">
+          <img class="latest-card-img"
+            src="https://github.com/amishardev/navdhiweb/blob/main/Screenshot%202026-03-06%20021756.png?raw=true"
+            alt="Dietary Guide Store" loading="lazy" />
+          <div class="latest-card-body">
+            <div class="latest-card-title">Dietary Guide Store</div>
+            <p class="latest-card-desc">A destination for clean, functional foods — protein-rich snacks, wholesome
+              granola, digestive teas, and treats.</p>
+            <a href="https://dietaryguide.in/products" target="_blank" rel="noopener noreferrer"
+              class="latest-card-link">Learn More →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================= CONNECT CTA ============================= -->
+  <section aria-label="Call to action">
+    <div class="connect-band">
+      <h2 class="connect-title">Your Wellness Journey<br>Starts Here</h2>
+      <p class="connect-desc">
+        Have a question, idea, or specific health concern? At NAVDHI INNOVATIONS,
+        we believe wellness should be personal, intentional, and informed by nature
+        and science. Let's build the future of health, together.
+      </p>
+      <div class="connect-form">
+        <input id="cta-email" class="connect-input" type="email" placeholder="Enter your email address"
+          aria-label="Email address for enquiry" />
+        <button class="connect-btn" onclick="handleCTA()">Get in Touch</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================= CONTACT ============================= -->
+  <section id="contact">
+    <div class="section">
+      <p class="section-label reveal">Get In Touch</p>
+      <h2 class="section-title reveal">Connect With Us</h2>
+
+      <div class="contact-grid">
+
+        <div class="contact-info reveal">
+          <p class="section-desc" style="margin-top:0; margin-bottom:24px;">
+            We're here to help and answer any question you might have.
+            We look forward to hearing from you!
+          </p>
+
+          <div class="contact-info-item">
+            <div class="ci-icon"><svg viewBox="0 0 24 24">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg></div>
+            <div>
+              <div class="ci-label">Address</div>
+              <div class="ci-value">IIT Kanpur, Kalyanpur, Kanpur,<br>Uttar Pradesh 208016</div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="ci-icon"><svg viewBox="0 0 24 24">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg></div>
+            <div>
+              <div class="ci-label">Email</div>
+              <div class="ci-value">contact@navdhi.com</div>
+            </div>
+          </div>
+
+          <div class="map-wrap">
+            <iframe src="https://maps.google.com/maps?q=26.511383,80.234931&z=17&output=embed" loading="lazy"
+              title="NAVDHI INNOVATIONS PVT LTD — IIT Kanpur" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <form class="contact-form" id="contact-form" onsubmit="handleContact(event)" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="cf-name">Full Name</label>
+                <input class="form-field" type="text" id="cf-name" placeholder="Your name" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="cf-email">Email</label>
+                <input class="form-field" type="email" id="cf-email" placeholder="your@email.com" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cf-subject">Subject</label>
+              <input class="form-field" type="text" id="cf-subject" placeholder="How can we help?" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cf-message">Message</label>
+              <textarea class="form-field" id="cf-message" rows="5"
+                placeholder="Share your thoughts, questions, or wellness goals…" required></textarea>
+            </div>
+            <button class="form-submit" type="submit" id="form-submit-btn">Send Message</button>
+            <div class="form-success" id="form-success">✓ &nbsp;Thank you! Our team will get back to you shortly.</div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= FOOTER ============================= -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">NAVDHI INNOVATIONS PVT LTD</div>
+        <p class="footer-tagline">The Essence of Innovation.<br>Driving innovation through AI and modern science.</p>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/company/dietary-guide/" target="_blank" rel="noopener noreferrer"
+            class="footer-soc" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/dietaryguide.in/" target="_blank" rel="noopener noreferrer"
+            class="footer-soc" aria-label="Instagram">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+          </a>
+          <a href="https://dietaryguide.in/" target="_blank" rel="noopener noreferrer" class="footer-soc"
+            aria-label="Dietary Guide website">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-head">Explore</div>
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#innovation">Innovation</a></li>
+          <li><a href="#latest">Latest News</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">Support</div>
+        <ul class="footer-links">
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">Contact</div>
+        <p class="footer-tagline" style="font-size:13px;">contact@navdhi.com</p>
+        <p class="footer-tagline" style="font-size:13px; margin-top:10px;">IIT Kanpur, Kalyanpur,<br>Kanpur, UP 208016
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 NAVDHI INNOVATIONS PVT LTD. All rights reserved.</span>
+      <span>The Essence of Innovation</span>
+    </div>
+  </footer>
+
+  <!-- ============================= SCRIPTS ============================= -->
+  <script>
+    /* ── DARK MODE TOGGLE ── */
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
+
+    // Restore saved preference
+    (function initTheme() {
+      const saved = localStorage.getItem('navdhi-theme');
+      if (saved === 'dark') {
+        htmlEl.classList.add('dark');
+      } else if (saved === 'light') {
+        htmlEl.classList.remove('dark');
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        htmlEl.classList.add('dark');
+      }
+    })();
+
+    themeToggle.addEventListener('click', () => {
+      htmlEl.classList.toggle('dark');
+      const isDark = htmlEl.classList.contains('dark');
+      localStorage.setItem('navdhi-theme', isDark ? 'dark' : 'light');
+    });
+
+    /* ── NAV SCROLL BEHAVIOUR ── */
+    const mainNav = document.getElementById('main-nav');
+    function handleNavScroll() {
+      mainNav.classList.toggle('scrolled', window.scrollY > 30);
+    }
+    window.addEventListener('scroll', handleNavScroll, { passive: true });
+    handleNavScroll();
+
+    /* ── NAV CTA ── */
+    document.getElementById('nav-cta-btn').addEventListener('click', () => navScrollTo('contact'));
+
+    /* ── MOBILE MENU ── */
+    const hamburger = document.getElementById('hamburger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuClose = document.getElementById('mobile-menu-close');
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    });
+    menuClose.addEventListener('click', closeMenu);
+
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    /* ── SMOOTH SCROLL HELPER ── */
+    function navScrollTo(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    /* ── CTA EMAIL ── */
+    function handleCTA() {
+      const email = document.getElementById('cta-email').value.trim();
+      if (!email || !email.includes('@')) {
+        document.getElementById('cta-email').focus();
+        return;
+      }
+      alert('Thank you! We\'ll be in touch at ' + email);
+      document.getElementById('cta-email').value = '';
+    }
+
+    /* ── CONTACT FORM ── */
+    function handleContact(e) {
+      e.preventDefault();
+      const btn = document.getElementById('form-submit-btn');
+      const success = document.getElementById('form-success');
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+      setTimeout(() => {
+        document.getElementById('contact-form').reset();
+        btn.style.display = 'none';
+        success.style.display = 'block';
+      }, 900);
+    }
+
+    /* ── SCROLL REVEAL ── */
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), 60);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+
+</html>
