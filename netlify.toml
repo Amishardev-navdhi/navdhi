@@ -1,27 +1,8 @@
 [build]
-  command = "npm run build"
-  publish = "out"
+  publish = "."
+  command = "echo 'Static site - no build needed'"
 
-[functions]
-  directory = ".netlify/functions"
-
-[build.processing]
-  skip_processing = false
-
-[build.processing.html]
-  pretty_urls = true
-
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
-[dev]
-  command = "npm run dev"
-  port = 8888
-
-[build.environment]
-  NODE_VERSION = "20"
-  NEXT_PUBLIC_ENV = "production"
-
-[template.environment]
-  NEXT_PUBLIC_ENV = "Set your public env variable here"
-  NODE_ENV = "production" 
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
