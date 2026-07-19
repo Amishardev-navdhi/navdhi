@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="NAPA V2 Beta — Navdhi Advanced Pulse Analyser. Snap a photo of your dal and get an instant AI-powered nutrition breakdown, from NAVDHI INNOVATIONS." />
+  <title>NAPA V2 Beta — Navdhi Advanced Pulse Analyser | NAVDHI INNOVATIONS</title>
+
+  <link rel="icon" type="image/x-icon" href="icon.ico" />
+  <link rel="shortcut icon" type="image/x-icon" href="icon.ico" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    /* =====================================================================
+       DESIGN TOKENS — shared with index.html (kept in sync)
+       ===================================================================== */
+    :root {
+      --bg: #f5f5f2;
+      --surface: #ffffff;
+      --border: #ddddd8;
+      --border-light: #e8e8e4;
+
+      --text-primary: #111110;
+      --text-secondary: #55554f;
+      --text-muted: #99998f;
+
+      --black: #111110;
+      --white: #ffffff;
+      --accent: #111110;
+
+      --card-hover-shadow: 0 24px 64px rgba(17, 17, 16, 0.10);
+      --nav-scrolled-bg: rgba(245, 245, 242, 0.97);
+
+      --font-head: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+      --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-pill: 999px;
+
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      /* NAPA product identity */
+      --napa: #d9822b;
+      --napa-light: #f2b25a;
+      --napa-dark: #b5651d;
+      --napa-glow: rgba(217, 130, 43, 0.35);
+    }
+
+    html.dark {
+      --bg: #0a0a0a;
+      --surface: #161616;
+      --border: #262626;
+      --border-light: #222222;
+
+      --text-primary: #f0f0ea;
+      --text-secondary: #a0a098;
+      --text-muted: #686862;
+
+      --black: #f0f0ea;
+      --white: #0a0a0a;
+      --accent: #f0f0ea;
+
+      --card-hover-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
+      --nav-scrolled-bg: rgba(10, 10, 10, 0.96);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      transition: background 0.3s;
+      zoom: 0.9;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text-primary);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      transition: background 0.35s, color 0.35s;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: var(--font-body);
+    }
+
+    /* =====================================================================
+       NAVIGATION (shared)
+       ===================================================================== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 44px;
+      transition: background 0.3s var(--ease), backdrop-filter 0.3s, border-bottom 0.3s;
+    }
+
+    .nav.scrolled {
+      background: var(--nav-scrolled-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .nav-brand img {
+      height: 48px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-brand .logo-light {
+      display: block;
+    }
+
+    .nav-brand .logo-dark {
+      display: none;
+    }
+
+    html.dark .nav-brand .logo-light {
+      display: none;
+    }
+
+    html.dark .nav-brand .logo-dark {
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: color 0.15s;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-links a.current {
+      color: var(--napa);
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .theme-toggle {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle:hover {
+      transform: scale(1.06);
+      border-color: var(--text-muted);
+    }
+
+    .theme-toggle svg {
+      width: 17px;
+      height: 17px;
+      stroke: var(--text-primary);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.2s;
+    }
+
+    .theme-toggle .icon-sun {
+      display: none;
+    }
+
+    .theme-toggle .icon-moon {
+      display: block;
+    }
+
+    html.dark .theme-toggle .icon-sun {
+      display: block;
+    }
+
+    html.dark .theme-toggle .icon-moon {
+      display: none;
+    }
+
+    .nav-cta {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 9px 22px;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-cta:hover {
+      background: var(--text-primary);
+      color: var(--bg);
+      border-color: var(--text-primary);
+    }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      background: var(--bg);
+      flex-direction: column;
+      padding: 24px 28px;
+      animation: fadeSlideDown 0.25s var(--ease) both;
+    }
+
+    @keyframes fadeSlideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+
+    .mobile-menu-close {
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: var(--text-secondary);
+      line-height: 1;
+    }
+
+    .mobile-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mobile-nav-list a {
+      font-family: var(--font-head);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+
+    .mobile-cta-wrap {
+      margin-top: auto;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* =====================================================================
+       SHARED SECTION LAYOUT
+       ===================================================================== */
+    .section-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 0 44px;
+      transition: background 0.3s;
+    }
+
+    .section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 88px 48px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: var(--font-head);
+      font-size: clamp(28px, 3.5vw, 46px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--text-primary);
+    }
+
+    .section-desc {
+      font-size: 15px;
+      line-height: 1.72;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin-top: 16px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =====================================================================
+       HERO
+       ===================================================================== */
+    .napa-hero {
+      padding-top: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .napa-hero::before {
+      content: '';
+      position: absolute;
+      top: -220px;
+      right: -160px;
+      width: 640px;
+      height: 640px;
+      background: radial-gradient(circle, var(--napa-glow), transparent 65%);
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    .napa-hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 84px 48px 40px;
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 56px;
+      align-items: center;
+      position: relative;
+    }
+
+    .napa-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--napa-dark);
+      background: rgba(217, 130, 43, 0.12);
+      border: 1px solid rgba(217, 130, 43, 0.35);
+      padding: 7px 16px 7px 12px;
+      border-radius: var(--radius-pill);
+    }
+
+    html.dark .napa-badge-pill {
+      color: var(--napa-light);
+    }
+
+    .napa-badge-pill .live-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--napa);
+      animation: napaPulseRing 1.8s infinite;
+    }
+
+    @keyframes napaPulseRing {
+      0% {
+        box-shadow: 0 0 0 0 var(--napa-glow);
+      }
+
+      70% {
+        box-shadow: 0 0 0 7px rgba(217, 130, 43, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(217, 130, 43, 0);
+      }
+    }
+
+    .napa-hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(34px, 5vw, 62px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      margin-top: 22px;
+      color: var(--text-primary);
+    }
+
+    .napa-hero-title .accent-word {
+      background: linear-gradient(100deg, var(--napa), var(--napa-light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .napa-hero-sub {
+      margin-top: 20px;
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      max-width: 460px;
+    }
+
+    .napa-hero-ctas {
+      display: flex;
+      gap: 14px;
+      margin-top: 34px;
+      flex-wrap: wrap;
+    }
+
+    .napa-btn-primary {
+      background: var(--napa);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-pill);
+      padding: 15px 28px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      box-shadow: 0 10px 28px var(--napa-glow);
+      transition: transform 0.15s var(--ease), opacity 0.15s;
+      white-space: nowrap;
+    }
+
+    .napa-btn-primary:hover {
+      transform: translateY(-2px);
+      opacity: 0.94;
+    }
+
+    .napa-btn-secondary {
+      background: transparent;
+      border: 1.5px solid var(--border);
+      color: var(--text-primary);
+      border-radius: var(--radius-pill);
+      padding: 15px 26px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: border-color 0.15s, transform 0.15s var(--ease);
+      white-space: nowrap;
+    }
+
+    .napa-btn-secondary:hover {
+      border-color: var(--text-muted);
+      transform: translateY(-2px);
+    }
+
+    .napa-hero-note {
+      margin-top: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ── Device mockup ── */
+    .napa-device {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: 0 40px 90px rgba(17, 17, 16, 0.14);
+      transition: background 0.35s, border-color 0.35s;
+    }
+
+    html.dark .napa-device {
+      box-shadow: 0 40px 90px rgba(0, 0, 0, 0.5);
+    }
+
+    .napa-device-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .napa-device-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .napa-device-label {
+      margin-left: auto;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .napa-scan-area {
+      position: relative;
+      height: 260px;
+      background:
+        radial-gradient(circle at 28% 20%, rgba(242, 178, 90, 0.28), transparent 55%),
+        linear-gradient(160deg, #241608, #3c220c 45%, #1c1006 100%);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .napa-scan-area::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 5px 5px;
+      pointer-events: none;
+    }
+
+    .napa-scan-frame-lg {
+      width: 140px;
+      height: 140px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .napa-scan-frame-lg .corner {
+      position: absolute;
+      width: 26px;
+      height: 26px;
+      border: 2.5px solid rgba(255, 255, 255, 0.55);
+    }
+
+    .napa-scan-frame-lg .corner.tl {
+      top: 0;
+      left: 0;
+      border-right: none;
+      border-bottom: none;
+      border-radius: 6px 0 0 0;
+    }
+
+    .napa-scan-frame-lg .corner.tr {
+      top: 0;
+      right: 0;
+      border-left: none;
+      border-bottom: none;
+      border-radius: 0 6px 0 0;
+    }
+
+    .napa-scan-frame-lg .corner.bl {
+      bottom: 0;
+      left: 0;
+      border-right: none;
+      border-top: none;
+      border-radius: 0 0 0 6px;
+    }
+
+    .napa-scan-frame-lg .corner.br {
+      bottom: 0;
+      right: 0;
+      border-left: none;
+      border-top: none;
+      border-radius: 0 0 6px 0;
+    }
+
+    .napa-scan-frame-lg svg {
+      width: 62px;
+      height: 62px;
+      stroke: var(--napa-light);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .napa-scan-line-lg {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--napa-light), transparent);
+      animation: napaScanMoveLg 2.6s ease-in-out infinite;
+    }
+
+    @keyframes napaScanMoveLg {
+
+      0%,
+      100% {
+        top: 8px;
+      }
+
+      50% {
+        top: calc(100% - 10px);
+      }
+    }
+
+    .napa-result-row {
+      display: flex;
+      gap: 8px;
+      padding: 16px 18px 18px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border);
+    }
+
+    .napa-result-chip {
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 7px 12px;
+      border-radius: var(--radius-pill);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .napa-result-chip .dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--napa);
+      flex-shrink: 0;
+    }
+
+    /* =====================================================================
+       MODEL SPEC STRIP
+       ===================================================================== */
+    .napa-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .napa-strip-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .napa-strip-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 7px;
+    }
+
+    .napa-strip-value {
+      font-family: var(--font-head);
+      font-size: 15.5px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+    }
+
+    /* =====================================================================
+       HOW IT WORKS
+       ===================================================================== */
+    .napa-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 52px;
+    }
+
+    .napa-step {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 26px 22px 28px;
+      transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.35s;
+    }
+
+    .napa-step:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--card-hover-shadow);
+    }
+
+    .napa-step-num {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--napa);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+
+    .napa-step-title {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .napa-step-desc {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* =====================================================================
+       FEATURE GRID
+       ===================================================================== */
+    .napa-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 52px;
+    }
+
+    .napa-feature {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 26px 22px 28px;
+      transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease), background 0.35s;
+    }
+
+    .napa-feature:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--card-hover-shadow);
+    }
+
+    .napa-feature-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--napa), var(--napa-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .napa-feature-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .napa-feature-title {
+      font-family: var(--font-head);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .napa-feature-desc {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+
+    /* =====================================================================
+       VARIETY CHIPS
+       ===================================================================== */
+    .napa-variety-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 40px;
+    }
+
+    .napa-variety-chip {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      background: var(--surface);
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border);
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .napa-variety-chip:hover {
+      background: var(--napa);
+      color: #fff;
+      border-color: var(--napa);
+    }
+
+    .napa-variety-chip.more {
+      color: var(--text-muted);
+      font-style: italic;
+      background: transparent;
+    }
+
+    .napa-variety-chip.more:hover {
+      background: transparent;
+      color: var(--text-muted);
+      border-color: var(--border);
+    }
+
+    /* =====================================================================
+       DEMO / OUTPUT SECTION
+       ===================================================================== */
+    .napa-demo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      margin-top: 52px;
+      align-items: center;
+    }
+
+    .napa-demo-photo {
+      aspect-ratio: 1;
+      border-radius: var(--radius-lg);
+      background:
+        radial-gradient(circle at 30% 20%, rgba(242, 178, 90, 0.28), transparent 55%),
+        linear-gradient(160deg, #241608, #3c220c 45%, #1c1006 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .napa-demo-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 5px 5px;
+      pointer-events: none;
+    }
+
+    .napa-code-card {
+      background: #14100b;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .napa-code-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 13px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .napa-code-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .napa-code-label {
+      margin-left: auto;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .napa-code-body {
+      padding: 22px 24px 26px;
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      line-height: 1.9;
+      overflow-x: auto;
+    }
+
+    .napa-code-key {
+      color: var(--napa-light);
+    }
+
+    .napa-code-str {
+      color: #a8d8b9;
+    }
+
+    .napa-code-punc {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    /* =====================================================================
+       BETA CTA BAND
+       ===================================================================== */
+    .napa-connect-band {
+      background: var(--text-primary);
+      color: var(--bg);
+      padding: 88px 48px;
+      text-align: center;
+      transition: background 0.35s, color 0.35s;
+    }
+
+    .napa-connect-title {
+      font-family: var(--font-head);
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .napa-connect-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 20px auto 0;
+    }
+
+    html:not(.dark) .napa-connect-desc {
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    html.dark .napa-connect-desc {
+      color: rgba(10, 10, 10, 0.55);
+    }
+
+    .napa-connect-form {
+      display: flex;
+      gap: 8px;
+      max-width: 420px;
+      margin: 36px auto 0;
+    }
+
+    .napa-connect-input {
+      flex: 1;
+      padding: 13px 18px;
+      border-radius: var(--radius-pill);
+      border: 1.5px solid rgba(128, 128, 128, 0.3);
+      background: rgba(128, 128, 128, 0.12);
+      color: var(--bg);
+      font-family: var(--font-body);
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .napa-connect-input::placeholder {
+      color: rgba(128, 128, 128, 0.6);
+    }
+
+    .napa-connect-input:focus {
+      border-color: rgba(128, 128, 128, 0.6);
+    }
+
+    .napa-connect-btn {
+      background: var(--napa);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-pill);
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 13px 26px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.15s, transform 0.15s;
+    }
+
+    .napa-connect-btn:hover {
+      opacity: 0.88;
+      transform: translateY(-1px);
+    }
+
+    .napa-connect-success {
+      display: none;
+      margin: 20px auto 0;
+      max-width: 420px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--napa-light);
+    }
+
+    /* =====================================================================
+       FAQ
+       ===================================================================== */
+    .napa-faq-list {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .napa-faq-item {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .napa-faq-item:first-child {
+      padding-top: 0;
+    }
+
+    .napa-faq-q {
+      font-family: var(--font-head);
+      font-size: 15.5px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+
+    .napa-faq-a {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 640px;
+    }
+
+    /* =====================================================================
+       FOOTER (shared)
+       ===================================================================== */
+    .footer {
+      background: var(--text-primary);
+      color: rgba(128, 128, 128, 0.7);
+      transition: background 0.35s;
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 48px 40px;
+      display: grid;
+      grid-template-columns: 2.2fr 1fr 1fr 1.2fr;
+      gap: 48px;
+    }
+
+    .footer-brand {
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--bg);
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+
+    .footer-tagline {
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .footer-soc {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      background: rgba(128, 128, 128, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+
+    .footer-soc:hover {
+      background: rgba(128, 128, 128, 0.25);
+    }
+
+    .footer-soc svg {
+      width: 15px;
+      height: 15px;
+      stroke: rgba(128, 128, 128, 0.8);
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .footer-col-head {
+      font-family: var(--font-head);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--bg);
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .footer-links a {
+      font-size: 13px;
+      transition: color 0.15s;
+    }
+
+    .footer-links a:hover {
+      color: var(--bg);
+    }
+
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 48px;
+      border-top: 1px solid rgba(128, 128, 128, 0.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: rgba(128, 128, 128, 0.45);
+    }
+
+    /* =====================================================================
+       RESPONSIVE
+       ===================================================================== */
+    @media (max-width: 1024px) {
+      .napa-steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .napa-feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .napa-strip-inner {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 28px;
+      }
+    }
+
+    @media (max-width: 860px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      .nav {
+        padding: 0 24px;
+      }
+
+      .napa-hero-inner {
+        grid-template-columns: 1fr;
+        padding: 48px 24px 40px;
+        gap: 40px;
+      }
+
+      .napa-demo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+
+      .section {
+        padding: 64px 24px;
+      }
+
+      .section-divider {
+        margin: 0 24px;
+      }
+
+      .napa-connect-band {
+        padding: 60px 24px;
+      }
+
+      .napa-connect-form {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .napa-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .napa-feature-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .napa-strip-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        padding: 48px 24px 32px;
+      }
+
+      .footer-bottom {
+        padding: 20px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ============================= NAVIGATION ============================= -->
+  <nav class="nav" id="main-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-left">
+      <a href="index.html#home" class="nav-brand" id="nav-brand">
+        <img class="logo-light"
+          src="https://raw.githubusercontent.com/amishardev/DGWEBSITEIMG/main/Purple_and_White_Subtle_Gradients_LinkedIn_Banner__2_-removebg-preview.png"
+          alt="NAVDHI INNOVATIONS" />
+        <img class="logo-dark"
+          src="https://raw.githubusercontent.com/amishardev/DGWEBSITEIMG/main/Purple_and_White_Subtle_Gradients_LinkedIn_Banner__1_-removebg-preview.png"
+          alt="NAVDHI INNOVATIONS" />
+      </a>
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#products">Products</a></li>
+        <li><a href="index.html#innovation">Innovation</a></li>
+        <li><a href="index.html#ai-models">AI Models</a></li>
+        <li><a href="index.html#latest">Latest</a></li>
+        <li><a href="napa-v2.html" class="current">NAPA V2</a></li>
+      </ul>
+    </div>
+
+    <div class="nav-right">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="5" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
+      </button>
+
+      <button class="nav-cta" id="nav-cta-btn" aria-label="Request beta access">
+        Join Beta
+      </button>
+
+      <button class="nav-hamburger" id="hamburger-btn" aria-label="Open mobile menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Mobile navigation">
+    <div class="mobile-menu-top">
+      <span class="nav-brand">
+        <img class="logo-light"
+          src="https://raw.githubusercontent.com/amishardev/DGWEBSITEIMG/main/Purple_and_White_Subtle_Gradients_LinkedIn_Banner__2_-removebg-preview.png"
+          alt="NAVDHI INNOVATIONS" />
+        <img class="logo-dark"
+          src="https://raw.githubusercontent.com/amishardev/DGWEBSITEIMG/main/Purple_and_White_Subtle_Gradients_LinkedIn_Banner__1_-removebg-preview.png"
+          alt="NAVDHI INNOVATIONS" />
+      </span>
+      <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">✕</button>
+    </div>
+    <ul class="mobile-nav-list" role="list">
+      <li><a href="index.html#about" onclick="closeMenu()">About</a></li>
+      <li><a href="index.html#products" onclick="closeMenu()">Products</a></li>
+      <li><a href="index.html#innovation" onclick="closeMenu()">Innovation</a></li>
+      <li><a href="index.html#ai-models" onclick="closeMenu()">AI Models</a></li>
+      <li><a href="index.html#latest" onclick="closeMenu()">Latest</a></li>
+      <li><a href="napa-v2.html" onclick="closeMenu()">NAPA V2</a></li>
+    </ul>
+    <div class="mobile-cta-wrap">
+      <button class="napa-btn-primary" style="width:100%; padding:14px;"
+        onclick="closeMenu(); navScrollTo('beta-cta')">
+        Join the Beta →
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================= HERO ============================= -->
+  <section class="napa-hero">
+    <div class="napa-hero-inner">
+      <div>
+        <span class="napa-badge-pill reveal"><span class="live-dot"></span>NAVDHI INNOVATION LAB · BETA</span>
+        <h1 class="napa-hero-title reveal">
+          Know What's In<br>Your <span class="accent-word">Dal.</span> Instantly.
+        </h1>
+        <p class="napa-hero-sub reveal">
+          NAPA V2 — the Navdhi Advanced Pulse Analyser — is our new AI vision model
+          that reads a single photo of your dal and returns a full nutrition
+          breakdown in seconds. No scale, no lookup tables, no guesswork.
+        </p>
+        <div class="napa-hero-ctas reveal">
+          <button class="napa-btn-primary" onclick="navScrollTo('beta-cta')">Join the Beta →</button>
+          <button class="napa-btn-secondary" onclick="navScrollTo('how-it-works')">See How It Works ↓</button>
+        </div>
+        <p class="napa-hero-note reveal">Rolling out inside the Dietary Guide app · Limited early access</p>
+      </div>
+
+      <div class="napa-device reveal">
+        <div class="napa-device-bar">
+          <span class="napa-device-dot"></span>
+          <span class="napa-device-dot"></span>
+          <span class="napa-device-dot"></span>
+          <span class="napa-device-label">NAPA V2 — Live Scan</span>
+        </div>
+        <div class="napa-scan-area">
+          <div class="napa-scan-frame-lg">
+            <span class="corner tl"></span>
+            <span class="corner tr"></span>
+            <span class="corner bl"></span>
+            <span class="corner br"></span>
+            <svg viewBox="0 0 24 24">
+              <path d="M3 11h18a9 9 0 0 1-9 9 9 9 0 0 1-9-9z" />
+              <path d="M12 11V4" />
+              <path d="M9 6c0-1.5 1-2 3-2s3 .5 3 2" />
+            </svg>
+            <div class="napa-scan-line-lg"></div>
+          </div>
+        </div>
+        <div class="napa-result-row">
+          <span class="napa-result-chip"><span class="dot"></span>Toor Dal</span>
+          <span class="napa-result-chip"><span class="dot"></span>182 kcal</span>
+          <span class="napa-result-chip"><span class="dot"></span>Protein 9.8g</span>
+          <span class="napa-result-chip"><span class="dot"></span>Fiber 5.2g</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= MODEL STRIP ============================= -->
+  <div class="napa-strip">
+    <div class="napa-strip-inner">
+      <div class="reveal">
+        <div class="napa-strip-label">Input</div>
+        <div class="napa-strip-value">Single Photo</div>
+      </div>
+      <div class="reveal">
+        <div class="napa-strip-label">Output</div>
+        <div class="napa-strip-value">Structured Nutrition Data</div>
+      </div>
+      <div class="reveal">
+        <div class="napa-strip-label">Focus</div>
+        <div class="napa-strip-value">Indian Dals &amp; Legumes</div>
+      </div>
+      <div class="reveal">
+        <div class="napa-strip-label">Status</div>
+        <div class="napa-strip-value">Beta · Limited Access</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================= HOW IT WORKS ============================= -->
+  <section id="how-it-works">
+    <div class="section">
+      <p class="section-label reveal">The Process</p>
+      <h2 class="section-title reveal">From Photo to<br>Nutrition, in Seconds</h2>
+      <p class="section-desc reveal">
+        NAPA V2 turns a single image into a complete, structured nutrition
+        profile — built for the way dal is actually cooked and eaten.
+      </p>
+
+      <div class="napa-steps">
+        <div class="napa-step reveal">
+          <div class="napa-step-num">1</div>
+          <div class="napa-step-title">Capture</div>
+          <p class="napa-step-desc">Snap or upload a photo of your dal in a bowl, katori, or plate — however
+            you'd normally eat it.</p>
+        </div>
+        <div class="napa-step reveal">
+          <div class="napa-step-num">2</div>
+          <div class="napa-step-title">Detect</div>
+          <p class="napa-step-desc">NAPA identifies the dal variety, or mix of varieties, and estimates the
+            portion in the frame.</p>
+        </div>
+        <div class="napa-step reveal">
+          <div class="napa-step-num">3</div>
+          <div class="napa-step-title">Analyze</div>
+          <p class="napa-step-desc">Our nutrition model maps the visual read to a verified nutrient database,
+            accounting for oil and tempering.</p>
+        </div>
+        <div class="napa-step reveal">
+          <div class="napa-step-num">4</div>
+          <div class="napa-step-title">Insights</div>
+          <p class="napa-step-desc">Get the full breakdown plus personalized suggestions, synced straight into
+            the Dietary Guide app.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================= FEATURES ============================= -->
+  <section id="features">
+    <div class="section">
+      <p class="section-label reveal">What It Can Do</p>
+      <h2 class="section-title reveal">Built for How<br>India Actually Eats Dal</h2>
+      <p class="section-desc reveal">
+        Not a generic food scanner — a model shaped around dal, the way it's
+        cooked, mixed, and served across Indian kitchens.
+      </p>
+
+      <div class="napa-feature-grid">
+        <div class="napa-feature reveal">
+          <div class="napa-feature-icon"><svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9" />
+              <circle cx="12" cy="12" r="3" />
+            </svg></div>
+          <div class="napa-feature-title">Multi-Dal Detection</div>
+          <p class="napa-feature-desc">Recognizes multiple dals and mixed preparations — like mixed-dal khichdi —
+            in a single frame.</p>
+        </div>
+        <div class="napa-feature reveal">
+          <div class="napa-feature-icon"><svg viewBox="0 0 24 24">
+              <path d="M12 2v6M12 16v6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M16 12h6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2" />
+            </svg></div>
+          <div class="napa-feature-title">Portion Estimation</div>
+          <p class="napa-feature-desc">Approximates serving size directly from the image — no manual weighing or
+            entry required.</p>
+        </div>
+        <div class="napa-feature reveal">
+          <div class="napa-feature-icon"><svg viewBox="0 0 24 24">
+              <path d="M3 3v18h18" />
+              <path d="M7 15l4-6 3 3 5-8" />
+            </svg></div>
+          <div class="napa-feature-title">Macro &amp; Micro Breakdown</div>
+          <p class="napa-feature-desc">Protein, carbs, fiber, iron, folate and more — estimated per serving, not
+            just per 100g.</p>
+        </div>
+        <div class="napa-feature reveal">
+          <div class="napa-feature-icon"><svg viewBox="0 0 24 24">
+              <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z" />
+              <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
+            </svg></div>
+          <div class="napa-feature-title">Recipe-Aware Context</div>
+          <p class="napa-feature-desc">Accounts for tadka, ghee, and oil in mixed dishes instead of scoring dal
+            in isolation.</p>
+        </div>
+        <div class="napa-feature reveal">
+          <div class="napa-feature-icon"><svg viewBox="0 0 24 24">
+              <path d="M13 2 3 14h7l-1 8 10-12h-7z" />
+            </svg></div>
+          <div class="napa-feature-title">Instant Results</div>
+          <p class="napa-feature-desc">Analysis returns in seconds, right on your phone — fast enough to use at
+            the table.</p>
+        </div>
+        <div class="napa-feature reveal">
+          <div class="napa-feature-icon"><svg viewBox="0 0 24 24">
+              <rect x="5" y="11" width="14" height="10" rx="2" />
+              <path d="M8 11V7a4 4 0 0 1 8 0v4" />
+            </svg></div>
+          <div class="napa-feature-title">Privacy by Design</div>
+          <p class="napa-feature-desc">Images are processed to extract nutrition data only — never stored for
+            training without consent.</p>
+        </div>
+      </div>
+
+      <p class="subsection-label"
+        style="font-size:10px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--text-muted); margin:52px 0 0;">
+        Supported Varieties</p>
+      <div class="napa-variety-wrap">
+        <span class="napa-variety-chip">Toor Dal</span>
+        <span class="napa-variety-chip">Moong Dal</span>
+        <span class="napa-variety-chip">Masoor Dal</span>
+        <span class="napa-variety-chip">Chana Dal</span>
+        <span class="napa-variety-chip">Urad Dal</span>
+        <span class="napa-variety-chip">Rajma</span>
+        <span class="napa-variety-chip">Chickpeas</span>
+        <span class="napa-variety-chip">Green Gram</span>
+        <span class="napa-variety-chip">Horse Gram</span>
+        <span class="napa-variety-chip">Kidney Beans</span>
+        <span class="napa-variety-chip more">+ more every release</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================= DEMO / OUTPUT ============================= -->
+  <section id="demo">
+    <div class="section">
+      <p class="section-label reveal">See It In Action</p>
+      <h2 class="section-title reveal">One Photo In.<br>Structured Nutrition Out.</h2>
+      <p class="section-desc reveal">
+        NAPA V2 doesn't just guess a calorie count — it returns a structured
+        read you can build on, inside the Dietary Guide app or your own tools.
+      </p>
+
+      <div class="napa-demo-grid">
+        <div class="napa-demo-photo reveal">
+          <div class="napa-scan-frame-lg">
+            <span class="corner tl"></span>
+            <span class="corner tr"></span>
+            <span class="corner bl"></span>
+            <span class="corner br"></span>
+            <svg viewBox="0 0 24 24">
+              <path d="M3 11h18a9 9 0 0 1-9 9 9 9 0 0 1-9-9z" />
+              <path d="M12 11V4" />
+              <path d="M9 6c0-1.5 1-2 3-2s3 .5 3 2" />
+            </svg>
+            <div class="napa-scan-line-lg"></div>
+          </div>
+        </div>
+
+        <div class="napa-code-card reveal">
+          <div class="napa-code-bar">
+            <span class="napa-code-dot"></span>
+            <span class="napa-code-dot"></span>
+            <span class="napa-code-dot"></span>
+            <span class="napa-code-label">napa_output.json</span>
+          </div>
+          <div class="napa-code-body">
+            <div><span class="napa-code-punc">{</span></div>
+            <div>&nbsp;&nbsp;<span class="napa-code-key">"dal_type"</span><span class="napa-code-punc">:</span>
+              <span class="napa-code-str">"Toor Dal (Arhar)"</span><span class="napa-code-punc">,</span></div>
+            <div>&nbsp;&nbsp;<span class="napa-code-key">"portion"</span><span class="napa-code-punc">:</span>
+              <span class="napa-code-str">"1 katori (~150g cooked)"</span><span class="napa-code-punc">,</span></div>
+            <div>&nbsp;&nbsp;<span class="napa-code-key">"calories"</span><span class="napa-code-punc">:</span>
+              <span class="napa-code-str">"182 kcal"</span><span class="napa-code-punc">,</span></div>
+            <div>&nbsp;&nbsp;<span class="napa-code-key">"protein"</span><span class="napa-code-punc">:</span>
+              <span class="napa-code-str">"9.8 g"</span><span class="napa-code-punc">,</span></div>
+            <div>&nbsp;&nbsp;<span class="napa-code-key">"fiber"</span><span class="napa-code-punc">:</span>
+              <span class="napa-code-str">"5.2 g"</span><span class="napa-code-punc">,</span></div>
+            <div>&nbsp;&nbsp;<span class="napa-code-key">"iron"</span><span class="napa-code-punc">:</span>
+              <span class="napa-code-str">"2.1 mg"</span></div>
+            <div><span class="napa-code-punc">}</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================= BETA CTA ============================= -->
+  <section aria-label="Join the beta" id="beta-cta">
+    <div class="napa-connect-band">
+      <h2 class="napa-connect-title">Be Among the First<br>to Try NAPA V2</h2>
+      <p class="napa-connect-desc">
+        We're onboarding a limited beta cohort as NAPA V2 rolls out inside the
+        Dietary Guide app. Drop your email and we'll reach out with early access.
+      </p>
+      <div class="napa-connect-form">
+        <input id="napa-cta-email" class="napa-connect-input" type="email" placeholder="Enter your email address"
+          aria-label="Email address for beta access" />
+        <button class="napa-connect-btn" onclick="handleNapaCTA()">Request Beta Access</button>
+      </div>
+      <p class="napa-connect-success" id="napa-cta-success">✓ &nbsp;Thanks! We'll be in touch with your beta
+        invite.</p>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================= FAQ ============================= -->
+  <section id="faq">
+    <div class="section">
+      <p class="section-label reveal">Good to Know</p>
+      <h2 class="section-title reveal">Frequently Asked<br>Questions</h2>
+
+      <div class="napa-faq-list">
+        <div class="napa-faq-item reveal">
+          <div class="napa-faq-q">What is NAPA?</div>
+          <p class="napa-faq-a">NAPA stands for Navdhi Advanced Pulse Analyser — our AI model for image-based
+            dal nutrition analysis, built by the Navdhi Innovation Lab.</p>
+        </div>
+        <div class="napa-faq-item reveal">
+          <div class="napa-faq-q">How accurate is it right now?</div>
+          <p class="napa-faq-a">NAPA V2 is in active beta. We're continuously improving detection and nutrition
+            estimates using real-world feedback from our beta cohort before a wider rollout.</p>
+        </div>
+        <div class="napa-faq-item reveal">
+          <div class="napa-faq-q">Where can I use it?</div>
+          <p class="napa-faq-a">NAPA V2 is rolling out inside the Dietary Guide app during the beta phase. Sign up
+            below to get early access as seats open up.</p>
+        </div>
+        <div class="napa-faq-item reveal">
+          <div class="napa-faq-q">How do I join the beta?</div>
+          <p class="napa-faq-a">Enter your email in the section above and our team will reach out with an
+            invite as we onboard the next cohort.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= FOOTER ============================= -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-brand">NAVDHI INNOVATIONS PVT LTD</div>
+        <p class="footer-tagline">The Essence of Innovation.<br>Driving innovation through AI and modern science.</p>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/company/dietary-guide/" target="_blank" rel="noopener noreferrer"
+            class="footer-soc" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/dietaryguide.in/" target="_blank" rel="noopener noreferrer"
+            class="footer-soc" aria-label="Instagram">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="2" width="20" height="20" rx="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>
+          </a>
+          <a href="https://dietaryguide.in/" target="_blank" rel="noopener noreferrer" class="footer-soc"
+            aria-label="Dietary Guide website">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="2" y1="12" x2="22" y2="12" />
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-head">Explore</div>
+        <ul class="footer-links">
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#products">Products</a></li>
+          <li><a href="index.html#innovation">Innovation</a></li>
+          <li><a href="index.html#ai-models">AI Models</a></li>
+          <li><a href="index.html#latest">Latest News</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">NAPA V2</div>
+        <ul class="footer-links">
+          <li><a href="#how-it-works">How It Works</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#beta-cta">Join the Beta</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-head">Contact</div>
+        <p class="footer-tagline" style="font-size:13px;">contact@navdhi.com</p>
+        <p class="footer-tagline" style="font-size:13px; margin-top:10px;">IIT Kanpur, Kalyanpur,<br>Kanpur, UP 208016
+        </p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 NAVDHI INNOVATIONS PVT LTD. All rights reserved.</span>
+      <span>The Essence of Innovation</span>
+    </div>
+  </footer>
+
+  <!-- ============================= SCRIPTS ============================= -->
+  <script>
+    /* ── DARK MODE TOGGLE ── */
+    const themeToggle = document.getElementById('theme-toggle');
+    const htmlEl = document.documentElement;
+
+    (function initTheme() {
+      const saved = localStorage.getItem('navdhi-theme');
+      if (saved === 'dark') {
+        htmlEl.classList.add('dark');
+      } else if (saved === 'light') {
+        htmlEl.classList.remove('dark');
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        htmlEl.classList.add('dark');
+      }
+    })();
+
+    themeToggle.addEventListener('click', () => {
+      htmlEl.classList.toggle('dark');
+      const isDark = htmlEl.classList.contains('dark');
+      localStorage.setItem('navdhi-theme', isDark ? 'dark' : 'light');
+    });
+
+    /* ── NAV SCROLL BEHAVIOUR ── */
+    const mainNav = document.getElementById('main-nav');
+    function handleNavScroll() {
+      mainNav.classList.toggle('scrolled', window.scrollY > 30);
+    }
+    window.addEventListener('scroll', handleNavScroll, { passive: true });
+    handleNavScroll();
+
+    /* ── NAV CTA ── */
+    document.getElementById('nav-cta-btn').addEventListener('click', () => navScrollTo('beta-cta'));
+
+    /* ── MOBILE MENU ── */
+    const hamburger = document.getElementById('hamburger-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuClose = document.getElementById('mobile-menu-close');
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.add('open');
+      hamburger.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    });
+    menuClose.addEventListener('click', closeMenu);
+
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    /* ── SMOOTH SCROLL HELPER ── */
+    function navScrollTo(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    /* ── BETA CTA EMAIL ── */
+    function handleNapaCTA() {
+      const input = document.getElementById('napa-cta-email');
+      const email = input.value.trim();
+      if (!email || !email.includes('@')) {
+        input.focus();
+        return;
+      }
+      document.getElementById('napa-cta-success').style.display = 'block';
+      input.value = '';
+    }
+
+    /* ── SCROLL REVEAL ── */
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), 60);
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+
+</html>

@@ -8,6 +8,9 @@
     content="NAVDHI INNOVATIONS PVT LTD — A research firm driving innovation through AI, nutrition science, and breakthrough technology." />
   <title>NAVDHI INNOVATIONS PVT LTD — The Essence of Innovation</title>
 
+  <link rel="icon" type="image/x-icon" href="icon.ico" />
+  <link rel="shortcut icon" type="image/x-icon" href="icon.ico" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -95,6 +98,7 @@
       scroll-behavior: smooth;
       -webkit-text-size-adjust: 100%;
       transition: background 0.3s;
+      zoom: 0.9;
     }
 
     body {
@@ -851,7 +855,7 @@
        ===================================================================== */
     .latest-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 22px;
       margin-top: 52px;
     }
@@ -911,6 +915,357 @@
 
     .latest-card-link:hover {
       letter-spacing: 0.02em;
+    }
+
+    .latest-card-title-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .beta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: var(--font-body);
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      color: #d9822b;
+      background: rgba(217, 130, 43, 0.12);
+      border: 1px solid rgba(217, 130, 43, 0.35);
+      padding: 3px 9px 3px 7px;
+      border-radius: var(--radius-pill);
+      flex-shrink: 0;
+    }
+
+    .beta-pill .beta-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #d9822b;
+      animation: napaPulseDot 1.8s ease-in-out infinite;
+    }
+
+    @keyframes napaPulseDot {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.35;
+      }
+    }
+
+    /* ── NAPA V2 card visual (CSS-built, no image asset) ── */
+    .napa-card-visual {
+      position: relative;
+      height: 190px;
+      background:
+        radial-gradient(circle at 25% 15%, rgba(242, 178, 90, 0.35), transparent 55%),
+        linear-gradient(160deg, #241608, #3c220c 45%, #1c1006 100%);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .napa-card-visual::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+      background-size: 5px 5px;
+      pointer-events: none;
+    }
+
+    .napa-scan-frame {
+      width: 74px;
+      height: 74px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .napa-scan-frame .corner {
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.55);
+    }
+
+    .napa-scan-frame .corner.tl {
+      top: 0;
+      left: 0;
+      border-right: none;
+      border-bottom: none;
+      border-radius: 4px 0 0 0;
+    }
+
+    .napa-scan-frame .corner.tr {
+      top: 0;
+      right: 0;
+      border-left: none;
+      border-bottom: none;
+      border-radius: 0 4px 0 0;
+    }
+
+    .napa-scan-frame .corner.bl {
+      bottom: 0;
+      left: 0;
+      border-right: none;
+      border-top: none;
+      border-radius: 0 0 0 4px;
+    }
+
+    .napa-scan-frame .corner.br {
+      bottom: 0;
+      right: 0;
+      border-left: none;
+      border-top: none;
+      border-radius: 0 0 4px 0;
+    }
+
+    .napa-scan-frame svg {
+      width: 34px;
+      height: 34px;
+      stroke: #f2b25a;
+      fill: none;
+      stroke-width: 1.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .napa-scan-line {
+      position: absolute;
+      left: 6px;
+      right: 6px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #f2b25a, transparent);
+      animation: napaScanMove 2.6s ease-in-out infinite;
+    }
+
+    @keyframes napaScanMove {
+
+      0%,
+      100% {
+        top: 6px;
+      }
+
+      50% {
+        top: calc(100% - 8px);
+      }
+    }
+
+    .napa-tag-float {
+      position: absolute;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      color: #f5ede1;
+      background: rgba(20, 12, 4, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 5px 10px;
+      border-radius: var(--radius-pill);
+    }
+
+    .napa-tag-1 {
+      top: 16px;
+      left: 16px;
+    }
+
+    .napa-tag-2 {
+      bottom: 16px;
+      right: 16px;
+    }
+
+    /* =====================================================================
+       AI MODELS SECTION
+       ===================================================================== */
+    .ai-models-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 52px;
+    }
+
+    .model-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px 30px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.25s var(--ease-bounce), box-shadow 0.25s var(--ease), background 0.35s;
+    }
+
+    .model-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--card-hover-shadow);
+    }
+
+    .model-card-soon {
+      border-style: dashed;
+    }
+
+    .model-card-soon:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .model-card-top {
+      display: flex;
+      margin-bottom: 20px;
+    }
+
+    .model-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      padding: 5px 11px 5px 9px;
+      border-radius: var(--radius-pill);
+    }
+
+    .status-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+    }
+
+    .status-beta {
+      color: #d9822b;
+      background: rgba(217, 130, 43, 0.12);
+      border: 1px solid rgba(217, 130, 43, 0.35);
+    }
+
+    .status-beta .status-dot {
+      background: #d9822b;
+      animation: napaPulseDot 1.8s ease-in-out infinite;
+    }
+
+    .status-live {
+      color: #1f9d55;
+      background: rgba(31, 157, 85, 0.12);
+      border: 1px solid rgba(31, 157, 85, 0.32);
+    }
+
+    .status-live .status-dot {
+      background: #1f9d55;
+    }
+
+    .status-soon {
+      color: var(--text-muted);
+      background: transparent;
+      border: 1px solid var(--border);
+    }
+
+    .status-soon .status-dot {
+      background: var(--text-muted);
+    }
+
+    .model-card-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .model-card-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .icon-napa {
+      background: linear-gradient(135deg, #d9822b, #b5651d);
+    }
+
+    .icon-napa svg {
+      stroke: #fff;
+    }
+
+    .icon-engine {
+      background: linear-gradient(135deg, #2f9e6d, #1c7048);
+    }
+
+    .icon-engine svg {
+      stroke: #fff;
+    }
+
+    .icon-soon {
+      background: var(--bg);
+      border: 1px solid var(--border);
+    }
+
+    .icon-soon svg {
+      stroke: var(--text-muted);
+    }
+
+    .model-card-name {
+      font-family: var(--font-head);
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .model-card-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .model-card-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .model-card-specs span {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 5px 11px;
+      border-radius: var(--radius-pill);
+    }
+
+    .model-card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 22px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.01em;
+      transition: gap 0.18s;
+    }
+
+    .model-card-link:hover {
+      gap: 9px;
+    }
+
+    .model-card-link-disabled {
+      color: var(--text-muted);
+      cursor: default;
     }
 
     /* =====================================================================
@@ -1336,6 +1691,10 @@
         grid-template-columns: 1fr;
       }
 
+      .ai-models-grid {
+        grid-template-columns: 1fr;
+      }
+
       .contact-grid {
         grid-template-columns: 1fr;
       }
@@ -1421,6 +1780,7 @@
         <li><a href="#team">Team</a></li>
         <li><a href="#products">Products</a></li>
         <li><a href="#innovation">Innovation</a></li>
+        <li><a href="#ai-models">AI Models</a></li>
         <li><a href="#latest">Latest</a></li>
       </ul>
     </div>
@@ -1468,6 +1828,7 @@
       <li><a href="#team" onclick="closeMenu()">Team</a></li>
       <li><a href="#products" onclick="closeMenu()">Products</a></li>
       <li><a href="#innovation" onclick="closeMenu()">Innovation</a></li>
+      <li><a href="#ai-models" onclick="closeMenu()">AI Models</a></li>
       <li><a href="#latest" onclick="closeMenu()">Latest</a></li>
       <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
     </ul>
@@ -1766,6 +2127,33 @@
 
       <div class="latest-grid">
         <article class="latest-card reveal">
+          <div class="napa-card-visual" role="img" aria-label="NAPA V2 scanning a bowl of dal">
+            <div class="napa-tag-float napa-tag-1">Protein 18g</div>
+            <div class="napa-scan-frame">
+              <span class="corner tl"></span>
+              <span class="corner tr"></span>
+              <span class="corner bl"></span>
+              <span class="corner br"></span>
+              <svg viewBox="0 0 24 24">
+                <path d="M3 11h18a9 9 0 0 1-9 9 9 9 0 0 1-9-9z" />
+                <path d="M12 11V4" />
+                <path d="M9 6c0-1.5 1-2 3-2s3 .5 3 2" />
+              </svg>
+              <div class="napa-scan-line"></div>
+            </div>
+            <div class="napa-tag-float napa-tag-2">182 kcal</div>
+          </div>
+          <div class="latest-card-body">
+            <div class="latest-card-title-row">
+              <div class="latest-card-title">NAPA V2 — Beta</div>
+              <span class="beta-pill"><span class="beta-dot"></span>BETA</span>
+            </div>
+            <p class="latest-card-desc">Navdhi Advanced Pulse Analyser. Snap a photo of your dal and our AI vision
+              model instantly reads its nutrition — protein, calories, fiber, and more.</p>
+            <a href="napa-v2.html" class="latest-card-link">Learn More →</a>
+          </div>
+        </article>
+        <article class="latest-card reveal">
           <img class="latest-card-img"
             src="https://raw.githubusercontent.com/amishardev/navdhiweb/main/Peach%20Website%20Launch%20Instagram%20Post.png"
             alt="Dietary Guide App" loading="lazy" />
@@ -1800,6 +2188,84 @@
             <a href="https://dietaryguide.in/products" target="_blank" rel="noopener noreferrer"
               class="latest-card-link">Learn More →</a>
           </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ============================= AI MODELS ============================= -->
+  <section id="ai-models">
+    <div class="section">
+      <p class="section-label reveal">AI Research</p>
+      <h2 class="section-title reveal">Models Built by<br>the Navdhi Lab</h2>
+      <p class="section-desc reveal">
+        Purpose-built AI models at the core of our products — trained on
+        real nutrition problems, not generic benchmarks.
+      </p>
+
+      <div class="ai-models-grid">
+        <article class="model-card reveal">
+          <div class="model-card-top">
+            <span class="model-status status-beta"><span class="status-dot"></span>BETA</span>
+          </div>
+          <div class="model-card-icon icon-napa">
+            <svg viewBox="0 0 24 24">
+              <path d="M3 11h18a9 9 0 0 1-9 9 9 9 0 0 1-9-9z" />
+              <path d="M12 11V4" />
+              <path d="M9 6c0-1.5 1-2 3-2s3 .5 3 2" />
+            </svg>
+          </div>
+          <h3 class="model-card-name">NAPA V2</h3>
+          <p class="model-card-desc">Navdhi Advanced Pulse Analyser — reads a single photo of your dal and returns
+            a full nutrition breakdown in seconds.</p>
+          <div class="model-card-specs">
+            <span>Image → Nutrition Data</span>
+            <span>Dal &amp; Legumes</span>
+          </div>
+          <a href="napa-v2.html" class="model-card-link">Explore NAPA V2 →</a>
+        </article>
+
+        <article class="model-card reveal">
+          <div class="model-card-top">
+            <span class="model-status status-live"><span class="status-dot"></span>LIVE</span>
+          </div>
+          <div class="model-card-icon icon-engine">
+            <svg viewBox="0 0 24 24">
+              <polygon points="12 2 2 7 12 12 22 7 12 2" />
+              <polyline points="2 17 12 22 22 17" />
+              <polyline points="2 12 12 17 22 12" />
+            </svg>
+          </div>
+          <h3 class="model-card-name">Smart Nutrition Engine</h3>
+          <p class="model-card-desc">Decodes lifestyle and health goals into personalized diet recommendations,
+            live inside the Dietary Guide app.</p>
+          <div class="model-card-specs">
+            <span>Profile → Diet Plan</span>
+            <span>Powers Dietary Guide</span>
+          </div>
+          <a href="https://dietaryguide.in/app" target="_blank" rel="noopener noreferrer"
+            class="model-card-link">See It Live →</a>
+        </article>
+
+        <article class="model-card model-card-soon reveal">
+          <div class="model-card-top">
+            <span class="model-status status-soon"><span class="status-dot"></span>COMING SOON</span>
+          </div>
+          <div class="model-card-icon icon-soon">
+            <svg viewBox="0 0 24 24">
+              <line x1="12" y1="5" x2="12" y2="19" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </div>
+          <h3 class="model-card-name">Next Model</h3>
+          <p class="model-card-desc">In active development at the Navdhi Innovation Lab. Details to be announced
+            as it nears release.</p>
+          <div class="model-card-specs">
+            <span>In Research</span>
+          </div>
+          <span class="model-card-link model-card-link-disabled">Announced Soon</span>
         </article>
       </div>
     </div>
@@ -1938,6 +2404,7 @@
           <li><a href="#team">Team</a></li>
           <li><a href="#products">Products</a></li>
           <li><a href="#innovation">Innovation</a></li>
+          <li><a href="#ai-models">AI Models</a></li>
           <li><a href="#latest">Latest News</a></li>
         </ul>
       </div>
